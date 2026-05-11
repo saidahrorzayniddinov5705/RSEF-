@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role management",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "admin"]
+        },
+        "createdAt": {
+          "type": "number"
+        }
+      },
+      "required": ["email", "role", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin privileges marker",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": ["email"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "Application submitted by a student or a team",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "abstract": {
+          "type": "string",
+          "description": "Max 300 words"
+        },
+        "personalStatement": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "selected", "rejected"]
+        },
+        "teamMembers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Max 3 team members, optional"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp"
+        }
+      },
+      "required": ["userId", "email", "fullName", "abstract", "personalStatement", "status", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "List of system administrators"
+    },
+    "/submissions/{submissionId}": {
+      "schema": { "$ref": "#/entities/Submission" },
+      "description": "Submitted applications for RSEF"
+    }
+  }
+}

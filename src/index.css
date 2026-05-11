@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
+}
+
+/* React Phone Number Input overrides */
+.apply-phone-input .PhoneInputInput {
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  font-weight: 500;
+  color: #0c182c;
+  padding-left: 0.5rem;
+  width: 100%;
+}
+.apply-phone-input .PhoneInputCountry {
+  border-right: 1px solid #dfdbd1;
+  padding-right: 0.5rem;
+  margin-right: 0;
+}

@@ -1,0 +1,120 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Validation for User
+    function isValidUser(data) {
+      return data.keys().hasAll(['email', 'role', 'createdAt']) &&
+             data.keys().size() == 3 &&
+             data.email is string && data.email.size() <= 200 &&
+             data.role is string && (data.role == 'user' || data.role == 'admin') &&
+             data.createdAt is number;
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
+      allow create: if isOwner(userId) && isValidId(userId) &&
+                       isValidUser(incoming()) &&
+                       incoming().role == 'user' && // Cannot self-assign admin
+                       incoming().createdAt == request.time.toMillis();
+      allow update: if (
+        isAdmin() ||
+        (
+          isOwner(userId) && isValidId(userId) &&
+          incoming().diff(existing()).affectedKeys().hasOnly(['email']) &&
+          incoming().email is string && incoming().email.size() <= 200
+        )
+      );
+      allow delete: if isAdmin();
+    }
+
+    // Validation for Admins
+    match /admins/{adminId} {
+      allow read: if isSignedIn(); // Needed for checking if someone is admin
+      allow write: if false; // Only manageable through Firebase Console
+    }
+
+    // Validation for Submission
+    function isValidSubmissionNew(data) {
+      return data.keys().hasAll(['userId', 'email', 'fullName', 'abstract', 'personalStatement', 'status', 'createdAt', 'updatedAt']) &&
+             (data.keys().size() == 8 || (data.keys().size() == 9 && data.keys().hasAll(['teamMembers']))) &&
+             data.userId is string && data.userId == request.auth.uid &&
+             data.email is string && data.email.size() <= 200 &&
+             data.fullName is string && data.fullName.size() <= 100 &&
+             data.abstract is string && data.abstract.size() <= 10000 && // rough limit
+             data.personalStatement is string && data.personalStatement.size() <= 10000 &&
+             data.status == 'pending' &&
+             data.createdAt is number &&
+             data.updatedAt is number &&
+             (!('teamMembers' in data) || (data.teamMembers is list && data.teamMembers.size() <= 3 && (data.teamMembers.size() == 0 || data.teamMembers[0] is string)));
+    }
+
+    function isValidSubmissionUpdate(data) {
+      return data.userId is string &&
+             data.email is string && data.email.size() <= 200 &&
+             data.fullName is string && data.fullName.size() <= 100 &&
+             data.abstract is string && data.abstract.size() <= 10000 &&
+             data.personalStatement is string && data.personalStatement.size() <= 10000 &&
+             data.status is string && (data.status == 'pending' || data.status == 'selected' || data.status == 'rejected') &&
+             data.createdAt is number &&
+             data.updatedAt is number &&
+             (!('teamMembers' in data) || (data.teamMembers is list && data.teamMembers.size() <= 3 && (data.teamMembers.size() == 0 || data.teamMembers[0] is string)));
+    }
+
+    match /submissions/{submissionId} {
+      allow get: if isSignedIn() && isValidId(submissionId) && (isOwner(existing().userId) || isAdmin());
+      allow list: if isSignedIn() && (isAdmin() || (existing().userId == request.auth.uid));
+      
+      allow create: if isSignedIn() && isValidId(submissionId) &&
+                       isValidSubmissionNew(incoming()) &&
+                       incoming().createdAt == request.time.toMillis() &&
+                       incoming().updatedAt == request.time.toMillis();
+                       
+      allow update: if isSignedIn() && isValidId(submissionId) && isValidSubmissionUpdate(incoming()) && (
+        (
+          isAdmin() && // Admins can update status
+          incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']) &&
+          incoming().updatedAt == request.time.toMillis() &&
+          incoming().userId == existing().userId &&
+          incoming().createdAt == existing().createdAt
+        ) ||
+        (
+          isOwner(existing().userId) && existing().status == 'pending' && // users can edit pending submissions
+          incoming().diff(existing()).affectedKeys().hasOnly(['abstract', 'personalStatement', 'teamMembers', 'updatedAt']) &&
+          incoming().updatedAt == request.time.toMillis() &&
+          incoming().userId == existing().userId &&
+          incoming().createdAt == existing().createdAt
+        )
+      );
+      
+      allow delete: if isAdmin() && isValidId(submissionId);
+    }
+  }
+}
