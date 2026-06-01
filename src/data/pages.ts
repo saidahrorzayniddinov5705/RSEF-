@@ -49,19 +49,19 @@ export const homePageData: SectionData[] = [
     data: {
       en: {
         title: "RSEF 2026 Team Registration is OPEN!",
-        subtitle: "Late Registration ends June 4",
+        subtitle: "Late Registration ends July 1",
         actionText: "Join over 400+ teams and 10,000 RSEFers ->",
         img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop"
       },
       uz: {
         title: "RSEF 2026 Jamoalarni ro'yxatga olish OCHIQ!",
-        subtitle: "Kech ro'yxatga olish 4-iyunda yopiladi",
+        subtitle: "Kech ro'yxatga olish 1-iyulda yopiladi",
         actionText: "O'z abstraktingizni topshiring va bizga qo'shiling ->",
          img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop"
       },
       ru: {
         title: "Регистрация команд RSEF 2026 ОТКРЫТА!",
-        subtitle: "Поздняя регистрация заканчивается 4 июня",
+        subtitle: "Поздняя регистрация заканчивается 1 июля",
         actionText: "Отправьте свою аннотацию и присоединяйтесь ->",
          img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop"
       }

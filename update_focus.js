@@ -1,22 +1,11 @@
 import * as fs from 'fs';
 
-const filePath = 'src/pages/apply.tsx';
-let content = fs.readFileSync(filePath, 'utf8');
+let content = fs.readFileSync('src/pages/apply.tsx', 'utf8');
 
-const regexMap = [
-  {
-    find: /className="bg-white border text-left border-\[#dfdbd1\] rounded-xl p-8 shadow-sm"/g,
-    replace: 'className="bg-white border-2 text-left border-[#dfdbd1] rounded-xl p-8 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]"'
-  },
-  {
-    find: /className="bg-white border border-\[#dfdbd1\] rounded-xl p-6 shadow-sm focus-within:ring-1 focus-within:ring-\[#0c182c\] focus-within:border-\[#0c182c\] transition-all"/g,
-    replace: 'className="bg-white border-2 border-[#dfdbd1] rounded-xl p-6 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]"'
-  }
-];
+const targetClass = 'w-full rounded-md border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]';
+const newClass = 'w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]';
 
-regexMap.forEach(({ find, replace }) => {
-  content = content.replace(find, replace);
-});
+content = content.split(targetClass).join(newClass);
 
-fs.writeFileSync(filePath, content, 'utf8');
-console.log("Updated apply.tsx focus-within successfully");
+fs.writeFileSync('src/pages/apply.tsx', content, 'utf8');
+console.log('done replacing blitz inputs');

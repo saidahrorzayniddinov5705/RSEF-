@@ -39,14 +39,18 @@ export function HomePage() {
       countries: "Countries",
       projects: "Projects",
       teams: "Teams/year",
-      dateTitle: "July 3-4, 2026",
+      dateTitle: "July 8, 2026",
+      venueTitle: "Nest One, Tashkent City",
+      googleMaps: "Google",
+      yandexMaps: "Yandex",
+      appleMaps: "Apple",
       dateDesc: "Join us for an immersive competition where top high school and university students showcase their research.",
       awardTitle: "Prizes & Scholarships",
       awardDesc: "Winners will be awarded the Grand Prize, exclusive internships, and university scholarships across global institutions.",
       viewAll: "View All",
       noNews: "No news published yet.",
-      supportersTitle: "Our Supporters",
-      supportersSoon: "Will be announced soon!"
+      supportersTitle: "Supported by",
+      supportersText: "We gratefully acknowledge the support of Freshman Academy in making this fair possible."
     },
     uz: {
       title: "Research, Science & Engineering Fair",
@@ -60,14 +64,18 @@ export function HomePage() {
       countries: "Davlatlar",
       projects: "Loyihalar",
       teams: "Jamoalar/yil",
-      dateTitle: "3-4 Iyul, 2026",
+      dateTitle: "8-Iyul, 2026",
+      venueTitle: "Nest One, Toshkent",
+      googleMaps: "Google",
+      yandexMaps: "Yandex",
+      appleMaps: "Apple",
       dateDesc: "Bizga qo'shiling va qiziqarli musobaqada eng iqtidorli maktab va universitet talabalari o'z tadqiqotlarini namoyish etishini kuzating.",
       awardTitle: "Sovrinlar va Grantlar",
       awardDesc: "G'oliblarga Bosh sovrin, eksklyuziv amaliyotlar va dunyo bo'ylab oliygohlarning grantlari taqdim etiladi.",
       viewAll: "Barchasini ko'rish",
       noNews: "Hozircha yangiliklar yo'q.",
-      supportersTitle: "Bizning Hamkorlar",
-      supportersSoon: "Tez orada e'lon qilinadi!"
+      supportersTitle: "Qo'llab-quvvatlovchi",
+      supportersText: "Ushbu yarmarkani tashkil etishda Freshman Academy ko'rsatgan yordami uchun minnatdorchilik bildiramiz."
     },
     ru: {
       title: "Research, Science & Engineering Fair",
@@ -81,14 +89,18 @@ export function HomePage() {
       countries: "Страны",
       projects: "Проекты",
       teams: "Команд/год",
-      dateTitle: "3-4 Июля, 2026",
+      dateTitle: "8 Июля, 2026",
+      venueTitle: "Nest One, Ташкент",
+      googleMaps: "Google",
+      yandexMaps: "Yandex",
+      appleMaps: "Apple",
       dateDesc: "Присоединяйтесь к нам на соревновании, где лучшие школьники и студенты вузов представляют свои исследования.",
       awardTitle: "Призы и Стипендии",
       awardDesc: "Победители получат Главный приз, эксклюзивные стажировки и стипендии университетов по всему миру.",
       viewAll: "Смотреть все",
       noNews: "Пока нет новостей.",
-      supportersTitle: "Наши Партнеры",
-      supportersSoon: "Будет объявлено в ближайшее время!"
+      supportersTitle: "При поддержке",
+      supportersText: "Мы с благодарностью отмечаем поддержку Freshman Academy в проведении этой выставки."
     }
   };
   const t = translations[locale as keyof typeof translations] || translations.en;
@@ -148,12 +160,31 @@ export function HomePage() {
       {/* Info Cards - White background, black text */}
       <div className="relative z-10 w-full bg-slate-50 border-t border-slate-200 py-24">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                   <Calendar className="w-10 h-10 text-emerald-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.dateTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{t.dateDesc}</p>
                </div>
+               
+               <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all flex flex-col justify-between">
+                  <div>
+                    <MapPin className="w-10 h-10 text-red-500 mb-6" />
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{t.venueTitle}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                     <a href="https://www.google.com/maps/search/?api=1&query=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                        {t.googleMaps}
+                     </a>
+                     <a href="https://yandex.com/maps/?text=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                        {t.yandexMaps}
+                     </a>
+                     <a href="https://maps.apple.com/?q=Nest+One,Tashkent,Uzbekistan" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                        {t.appleMaps}
+                     </a>
+                  </div>
+               </div>
+
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                   <Award className="w-10 h-10 text-indigo-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
@@ -206,14 +237,25 @@ export function HomePage() {
          </div>
       </div>
 
-      {/* Our Supporters */}
+      {/* Supported By */}
       <div className="relative z-10 w-full bg-slate-50 border-t border-slate-200 py-32">
-         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 mb-6 uppercase tracking-tight leading-tight">{t.supportersTitle || "Our Supporters"}</h2>
-            <div className="w-24 h-1 bg-[#4FD1FF] rounded-full mx-auto mb-10"></div>
-            <p className="text-xl md:text-2xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">
-               {t.supportersSoon || "Will be announced soon!"}
-            </p>
+         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 mb-6 text-center uppercase tracking-tight leading-tight">{t.supportersTitle}</h2>
+            <div className="w-24 h-1 bg-[#4FD1FF] rounded-full mx-auto mb-16"></div>
+            
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+               <div className="flex flex-col items-center shrink-0">
+                  <div className="w-48 h-48 mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-4">
+                     <img src="/freshman-logo.png" alt="Freshman Academy Logo" className="w-full h-full object-contain" />
+                  </div>
+                  <h3 className="text-2xl font-black text-[#0a192f] uppercase tracking-wide">Freshman Academy</h3>
+               </div>
+               <div className="flex-1 text-center md:text-left">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-[#0a192f] tracking-tight leading-relaxed">
+                    "{t.supportersText}"
+                  </p>
+               </div>
+            </div>
          </div>
       </div>
     </div>

@@ -449,7 +449,7 @@ export function ApplyPage() {
                    <textarea required rows={7} disabled={submissionExists} value={formData.abstract}
                      onChange={e => setFormData({...formData, abstract: e.target.value})}
                      placeholder="Describe your project — the question you asked, how you approached it, what you found, and why it matters. Write it so a smart person outside your field can follow it."
-                     className="w-full rounded-xl border-2 border-[#dfdbd1] bg-[#fdfdfc] px-4 py-3.5 placeholder:text-slate-400 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 disabled:bg-slate-50 transition-all font-medium text-[#0c182c] shadow-sm hover:border-[#cbd0d6] resize-none" />
+                     className="w-full rounded-xl border-2 border-slate-800 bg-[#fdfdfc] px-4 py-3.5 placeholder:text-slate-400/50 focus:bg-white focus:outline-none focus:border-slate-800 focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 transition-all font-medium text-[#0c182c] shadow-sm hover:border-slate-700 resize-none" />
                    <div className="text-right text-xs text-slate-400 mt-1">
                      {formData.abstract.split(/\s+/).filter(w => w.length > 0).length} / 300 words
                    </div>
@@ -578,7 +578,7 @@ export function ApplyPage() {
                     <textarea rows={4} required disabled={submissionExists} value={formData.blitz1}
                        onChange={e => setFormData({...formData, blitz1: e.target.value})}
                        placeholder="Type your answer here..."
-                       className="w-full rounded-md border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
+                       className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
                        {formData.blitz1.split(/\s+/).filter(w => w.length > 0).length} / 200 words
                     </div>
@@ -595,7 +595,7 @@ export function ApplyPage() {
                     <textarea rows={4} required disabled={submissionExists} value={formData.blitz2}
                        onChange={e => setFormData({...formData, blitz2: e.target.value})}
                        placeholder="Type your answer here..."
-                       className="w-full rounded-md border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
+                       className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
                        {formData.blitz2.split(/\s+/).filter(w => w.length > 0).length} / 200 words
                     </div>
@@ -612,7 +612,7 @@ export function ApplyPage() {
                     <textarea rows={4} disabled={submissionExists} value={formData.blitz3}
                        onChange={e => setFormData({...formData, blitz3: e.target.value})}
                        placeholder="Type your answer here..."
-                       className="w-full rounded-md border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
+                       className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
                        {formData.blitz3.split(/\s+/).filter(w => w.length > 0).length} / 200 words
                     </div>
@@ -639,11 +639,11 @@ export function ApplyPage() {
                  <p className="flex items-start"><span className="text-[#8a867d] mr-3 font-mono">—</span> What do you hope to take away from RSEF — not the award, but the experience?</p>
               </div>
 
-              <div className="bg-white border-2 border-[#dfdbd1] rounded-xl p-6 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]">
+              <div className="bg-white border-2 border-slate-800 rounded-xl p-4 shadow-sm focus-within:ring-4 focus-within:ring-slate-800/10 focus-within:border-slate-800 transition-all hover:border-slate-700">
                  <textarea required rows={10} disabled={submissionExists} value={formData.personalStatement}
                     onChange={e => setFormData({...formData, personalStatement: e.target.value})}
                     placeholder="Write in whatever language feels most natural to you. Uzbek or English, both are welcome."
-                    className="w-full border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none font-medium text-[#0c182c]" />
+                    className="w-full border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none font-medium text-[#0c182c] placeholder:text-slate-400/50" />
                  <div className="text-right text-xs text-slate-400 mt-2 border-t border-slate-100 pt-2 flex justify-between items-center">
                     <span className="text-slate-300 italic">Be honest. Be yourself.</span>
                     <span>{formData.personalStatement.split(/\s+/).filter(w => w.length > 0).length} / 500 words</span>

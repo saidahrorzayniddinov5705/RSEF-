@@ -17,9 +17,9 @@ export function RegistrationInfoPage() {
   };
 
   const tabNames = {
-    en: { timeline: "Process & Timeline", guidelines: "Guidelines", judging: "Judging & Format", faq: "FAQs" },
-    uz: { timeline: "Jarayon va muddatlar", guidelines: "Qoidalar", judging: "Baholash va Format", faq: "Savol-javoblar" },
-    ru: { timeline: "Процесс и сроки", guidelines: "Правила", judging: "Оценка и Формат", faq: "Вопросы" }
+    en: { timeline: "Process & Timeline", guidelines: "Online selection requirements", judging: "Judging & Format", faq: "FAQs" },
+    uz: { timeline: "Jarayon va muddatlar", guidelines: "Onlayn tanlov talablari", judging: "Baholash va Format", faq: "Savol-javoblar" },
+    ru: { timeline: "Процесс и сроки", guidelines: "Требования к онлайн-отбору", judging: "Оценка и Формат", faq: "Вопросы" }
   };
   const tTabs = tabNames[locale as keyof typeof tabNames] || tabNames.en;
 
@@ -218,6 +218,15 @@ export function RegistrationInfoPage() {
                        </div>
                      ))}
                   </div>
+
+                  {t.guidelines.categoriesNote && (
+                     <div className="mt-8 p-4 bg-indigo-50/50 rounded-xl border border-indigo-100 flex items-start gap-3">
+                        <AlertCircle className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+                        <p className="text-sm font-medium text-indigo-900/80 leading-relaxed">
+                           {t.guidelines.categoriesNote}
+                        </p>
+                     </div>
+                  )}
                </div>
             </div>
             )}
@@ -273,35 +282,6 @@ export function RegistrationInfoPage() {
                               </div>
                            </div>
                         </div>
-
-                        <div>
-                           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                              <FileText className="w-6 h-6 text-blue-400" /> {t.guidelines.formatTitle}
-                           </h3>
-                           <ul className="space-y-4">
-                              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700">
-                                 <div className="bg-slate-700/50 p-2 rounded-lg"><BookOpen className="w-5 h-5 text-white" /></div>
-                                 <div>
-                                    <p className="font-bold">{t.guidelines.format1T}</p>
-                                    <p className="text-sm text-slate-400">{t.guidelines.format1D}</p>
-                                 </div>
-                              </li>
-                              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700">
-                                 <div className="bg-slate-700/50 p-2 rounded-lg"><AlertCircle className="w-5 h-5 text-white" /></div>
-                                 <div>
-                                    <p className="font-bold">{t.guidelines.format2T}</p>
-                                    <p className="text-sm text-slate-400">{t.guidelines.format2D}</p>
-                                 </div>
-                              </li>
-                              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700">
-                                 <div className="bg-slate-700/50 p-2 rounded-lg"><Upload className="w-5 h-5 text-white" /></div>
-                                 <div>
-                                    <p className="font-bold">{t.guidelines.format3T}</p>
-                                    <p className="text-sm text-slate-400">{t.guidelines.format3D}</p>
-                                 </div>
-                              </li>
-                           </ul>
-                        </div>
                      </div>
                   </div>
                </div>
@@ -351,9 +331,6 @@ export function RegistrationInfoPage() {
                         <Link to={`/${locale}/apply`} className="w-full flex items-center justify-center gap-2 text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all hover:-translate-y-1 shadow-lg mb-4">
                            {t.sidebar.applyBtn} <ArrowRight className="w-4 h-4" />
                         </Link>
-                        <p className="text-xs text-center text-slate-500">
-                           {t.sidebar.agreement}
-                        </p>
                      </div>
                   </div>
 
@@ -398,12 +375,8 @@ export function RegistrationInfoPage() {
                            {t.sidebar.req3}
                         </li>
                         <li className="flex items-start gap-2">
-                           <CheckCircle2 className="w-4 h-4 text-indigo-500 mt-0.5 shrink-0" />
-                           {t.sidebar.req4}
-                        </li>
-                        <li className="flex items-start gap-2">
                            <AlertCircle className="w-4 h-4 text-rose-500 mt-0.5 shrink-0" />
-                           {t.sidebar.req5}
+                           {t.sidebar.req4}
                         </li>
                      </ul>
                   </div>

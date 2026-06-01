@@ -8,21 +8,21 @@ export const guidelinesTranslations = {
     },
     road: {
       title: "Road to RSEF 2026",
-      s1Label: "10.05 - 18.06",
+      s1Label: "08.06.2026 - 01.07.2026",
       s1Title: "Application Period",
       s1Desc: "Submit your project abstract, personal statement, and team details through our online application form. Applications are open to all students across Central Asia.",
-      s2Label: "18.06 - 21.06",
+      s2Label: "01.07.2026 - 07.07.2026",
       s2Title: "Review & Invitation",
       s2Desc: "Our jury panel reviews all submissions based on scientific merit, originality, and feasibility. Selected participants receive an official invitation by email.",
-      s3Label: "21.06 - 01.07",
+      s3Label: "01.07.2026 - 07.07.2026",
       s3Title: "Prepare your project",
-      s3Desc: "Invited participants (individually or in a team) submit their full project report, poster, and a short video presentation before the fair date.",
-      s4Label: "03.07",
+      s3Desc: "Invited participants (individually or in a team) should prepare their poster and full report until the event day during this period.",
+      s4Label: "08.07.2026",
       s4Title: "FAIR DAY",
-      s4Desc: "Present your project live to a panel of judges. Q&A sessions are held in Uzbek or English. Receive feedback from expert reviewers.",
-      s5Label: "04.07",
+      s4Desc: "Present your passion project in-person to judges. Q&A sessions will be held only in English. Receive feedbacks from foreign and national experts.",
+      s5Label: "08.07.2026",
       s5Title: "AWARD CEREMONY",
-      s5Desc: "Winners are announced at the closing ceremony. Top projects may be nominated for international representation."
+      s5Desc: "Winners are announced at the closing ceremony. Outstanding projects will receive awards and prizes."
     },
     guidelines: {
       abstractTitle: "Project Abstract",
@@ -52,10 +52,9 @@ export const guidelinesTranslations = {
       format1D: "8–15 pages, PDF format",
       format2T: "Poster",
       format2D: "A1 size, PDF or print-ready file",
-      format3T: "3-Minute Video",
-      format3D: "Uploaded to YouTube (unlisted) or Google Drive",
       categoriesTitle: "Project Categories",
       categoriesDesc: "You must choose one of the following 22 categories for your project. Make sure your research closely aligns with your selected category.",
+      categoriesNote: "Note: This is just the first stage. After the completion of the online evaluation process, selected participants will be invited to the fair through an e-mail.",
       categoriesList: [
         "Animal Sciences (ANIM)",
         "Behavioral and Social Sciences (BEHA)",
@@ -83,7 +82,7 @@ export const guidelinesTranslations = {
     },
     sidebar: {
       readyTitle: "Ready to Apply?",
-      readyDesc: "Applications close on June 18",
+      readyDesc: "Applications close on July 1",
       applyBtn: "Apply",
       agreement: "By participating, you agree to our Code of Conduct and competition rules.",
       eligibilityTitle: "Eligibility",
@@ -94,9 +93,8 @@ export const guidelinesTranslations = {
       reqTitle: "Project Requirements",
       req1: "Original research conducted within the last 12 months.",
       req2: "Written report (8-15 pages, PDF).",
-      req3: "Poster for presentation (print-ready PDF).",
-      req4: "Video submission (3-minute pitch).",
-      req5: "Crucial: Projects must not have won a prior national level competition."
+      req3: "ISEF-style research poster.",
+      req4: "Crucial: Projects must not have won a prior national level competition."
     },
     faqTitle: "Frequently Asked Questions",
     faqs: [
@@ -122,21 +120,21 @@ export const guidelinesTranslations = {
     },
     road: {
       title: "RSEF 2026 yo'li",
-      s1Label: "10.05 - 18.06",
+      s1Label: "08.06.2026 - 01.07.2026",
       s1Title: "Ariza topshirish davri",
       s1Desc: "Loyiha annotatsiyasi, shaxsiy bayonot va jamoa ma'lumotlarini onlayn shaklimiz orqali yuboring. Arizalar Markaziy Osiyodagi barcha talabalar uchun ochiq.",
-      s2Label: "18.06 - 21.06",
+      s2Label: "01.07.2026 - 07.07.2026",
       s2Title: "Ko'rib chiqish va Taklifnoma",
       s2Desc: "Hakamlar hay'ati barcha arizalarni ilmiy qiymati, o'ziga xosligi va bajarilishiga qarab baholaydi. Tanlangan ishtirokchilarga elektron pochta orqali rasmiy taklifnoma yuboriladi.",
-      s3Label: "21.06 - 01.07",
+      s3Label: "01.07.2026 - 07.07.2026",
       s3Title: "Loyihangizni Tayyorlang",
-      s3Desc: "Taklif etilgan ishtirokchilar (yakka yoki jamoa bo'lib) musobaqadan oldin to'liq loyiha hisobotini, posterni va qisqa video taqdimotni yuboradilar.",
-      s4Label: "03.07",
+      s3Desc: "Taklif etilgan ishtirokchilar (yakka yoki jamoa bo'lib) ushbu davrda tadbir kunigacha o'z posterlari va to'liq hisobotlarini tayyorlashlari kerak.",
+      s4Label: "08.07.2026",
       s4Title: "MUSOBAQA KUNI",
-      s4Desc: "Loyihangizni hakamlar hay'atiga jonli ravishda namoyish eting. Savol-javoblar o'zbek yoki ingliz tilida o'tadi. Mutaxassislardan fikr-mulohazalar oling.",
-      s5Label: "04.07",
+      s4Desc: "Loyihangizni hakamlarga yuzma-yuz namoyish qiling. Savol-javoblar faqat ingliz tilida bo'lib o'tadi. Xorijiy va mahalliy mutaxassislardan fikr-mulohazalar oling.",
+      s5Label: "08.07.2026",
       s5Title: "TAQDIRLASH MAROSIMI ✨️",
-      s5Desc: "Yopilish marosimida g'oliblar e'lon qilinadi. Eng yaxshi loyihalar xalqaro ishtirok uchun nomzod qilinishi mumkin."
+      s5Desc: "Yopilish marosimida g'oliblar e'lon qilinadi. Eng yaxshi loyihalar mukofotlar va sovrinlar bilan taqdirlanadi."
     },
     guidelines: {
       abstractTitle: "Loyiha Annotatsiyasi (Abstract)",
@@ -166,10 +164,9 @@ export const guidelinesTranslations = {
       format1D: "8–15 sahifa, PDF formatida",
       format2T: "Poster",
       format2D: "A1 o'lchamda, PDF yoki chop etishga tayyor fayl",
-      format3T: "3 daqiqalik Video",
-      format3D: "YouTube (unlisted) yoki Google Drive'ga yuklangan",
       categoriesTitle: "Loyiha Kategoriyalari",
       categoriesDesc: "Loyihangiz uchun quyidagi 22 ta kategoriyadan birini tanlashingiz kerak. Tadqiqotingiz tanlagan kategoriyangizga to'g'ri kelishiga ishonch hosil qiling.",
+      categoriesNote: "Eslatma: Bu faqat birinchi bosqich. Onlayn baholash jarayoni tugagandan so'ng, saralangan ishtirokchilar yarmarkaga elektron pochta orqali taklif qilinadi.",
       categoriesList: [
         "Animal Sciences (ANIM)",
         "Behavioral and Social Sciences (BEHA)",
@@ -197,7 +194,7 @@ export const guidelinesTranslations = {
     },
     sidebar: {
       readyTitle: "Tayyormisiz?",
-      readyDesc: "Arizalar qabuli 18-iyunda yopiladi",
+      readyDesc: "Arizalar qabuli 1-iyulda yopiladi",
       applyBtn: "Ariza topshirish",
       agreement: "Ishtirok etish orqali siz xulq-atvor qoidalari va musobaqa tartibiga rozi bo'lasiz.",
       eligibilityTitle: "Talablar",
@@ -208,9 +205,8 @@ export const guidelinesTranslations = {
       reqTitle: "Loyiha Talablari",
       req1: "So'nggi 12 oy ichida olib borilgan asl tadqiqot.",
       req2: "Yozma hisobot (8-15 sahifa, PDF).",
-      req3: "Taqdimot uchun poster (chop etishga tayyor PDF).",
-      req4: "Video taqdimot (3 daqiqalik yozuv).",
-      req5: "Muhim: Loyihalar bungacha milliy miqyosdagi musobaqalarda g'olib bo'lmagan bo'lishi kerak."
+      req3: "ISEF-style research poster.",
+      req4: "Muhim: Loyihalar bungacha milliy miqyosdagi musobaqalarda g'olib bo'lmagan bo'lishi kerak."
     },
     faqTitle: "Ko'p Beriladigan Savollar",
     faqs: [
@@ -236,21 +232,21 @@ export const guidelinesTranslations = {
     },
     road: {
       title: "Путь к RSEF 2026",
-      s1Label: "10.05 - 18.06",
+      s1Label: "08.06.2026 - 01.07.2026",
       s1Title: "Период приема заявок",
       s1Desc: "Отправьте аннотацию проекта, личное заявление и данные о команде через онлайн-форму. Прием открыт для всех учащихся Центральной Азии.",
-      s2Label: "18.06 - 21.06",
+      s2Label: "01.07.2026 - 07.07.2026",
       s2Title: "Рассмотрение и Приглашение",
       s2Desc: "Жюри оценивает все заявки на основе научной ценности, оригинальности и осуществимости. Выбранные участники получат официальное приглашение по email.",
-      s3Label: "21.06 - 01.07",
+      s3Label: "01.07.2026 - 07.07.2026",
       s3Title: "Подготовка проекта",
-      s3Desc: "Приглашенные участники загружают полный отчет, постер и краткую видео-презентацию до начала мероприятия.",
-      s4Label: "03.07",
+      s3Desc: "Приглашенные участники (индивидуально или в команде) в этот период должны подготовить свой постер и полный отчет до дня мероприятия.",
+      s4Label: "08.07.2026",
       s4Title: "ДЕНЬ СОРЕВНОВАНИЯ",
-      s4Desc: "Представьте свой проект жюри. Вопросы и ответы проходят на узбекском или английском языке. Получите отзывы от экспертов.",
-      s5Label: "04.07",
+      s4Desc: "Представьте свой проект жюри лично. Вопросы и ответы будут проходить только на английском языке. Получите отзывы от иностранных и национальных экспертов.",
+      s5Label: "08.07.2026",
       s5Title: "ЦЕРЕМОНИЯ НАГРАЖДЕНИЯ ✨️",
-      s5Desc: "Победители будут объявлены на церемонии закрытия. Лучшие проекты могут быть выдвинуты на международный уровень."
+      s5Desc: "Победители объявляются на церемонии закрытия. Выдающиеся проекты получат награды и призы."
     },
     guidelines: {
       abstractTitle: "Аннотация проекта (Abstract)",
@@ -280,10 +276,9 @@ export const guidelinesTranslations = {
       format1D: "8–15 страниц, в формате PDF",
       format2T: "Постер",
       format2D: "Формат A1, PDF или файл, готовый к печати",
-      format3T: "3-минутное видео",
-      format3D: "Загружено на YouTube (дост. по ссылке) или Google Drive",
       categoriesTitle: "Категории проектов",
       categoriesDesc: "Вы должны выбрать одну из следующих 22 категорий для вашего проекта. Убедитесь, что ваше исследование соответствует выбранной категории.",
+      categoriesNote: "Примечание: Это только первый этап. После завершения процесса онлайн-оценки выбранные участники будут приглашены на выставку по электронной почте.",
       categoriesList: [
         "Animal Sciences (ANIM)",
         "Behavioral and Social Sciences (BEHA)",
@@ -311,7 +306,7 @@ export const guidelinesTranslations = {
     },
     sidebar: {
       readyTitle: "Готовы подать заявку?",
-      readyDesc: "Прием заявок закрывается 18 июня",
+      readyDesc: "Прием заявок закрывается 1 июля",
       applyBtn: "Подать заявку",
       agreement: "Участвуя, вы соглашаетесь с Кодексом поведения и правилами соревнования.",
       eligibilityTitle: "Критерии отбора",
@@ -322,9 +317,8 @@ export const guidelinesTranslations = {
       reqTitle: "Требования к проекту",
       req1: "Оригинальное исследование, проведенное за последние 12 месяцев.",
       req2: "Письменный отчет (8-15 страниц, PDF).",
-      req3: "Постер для презентации (PDF для печати).",
-      req4: "Видео-презентация (запись на 3 минуты).",
-      req5: "Важно: Проекты не должны являться победителями прошлых соревнований национального уровня."
+      req3: "Изследовательский постер в стиле ISEF.",
+      req4: "Важно: Проекты не должны являться победителями прошлых соревнований национального уровня."
     },
     faqTitle: "Часто задаваемые вопросы",
     faqs: [

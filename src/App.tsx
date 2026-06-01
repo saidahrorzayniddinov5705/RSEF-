@@ -19,7 +19,6 @@ import { ContactPage } from './pages/contact';
 import SearchPage from './pages/search';
 import { ProfilePage } from './pages/profile';
 import { SponsorsPage } from './pages/sponsors';
-import { DonatePage } from './pages/donate';
 import { IntroVideo } from './components/IntroVideo';
 
 export default function App() {
@@ -47,7 +46,6 @@ export default function App() {
               <Route path="search" element={<SearchPage />} />
               <Route path="profile" element={<ProfilePage />} />
               <Route path="sponsors" element={<SponsorsPage />} />
-              <Route path="donate" element={<DonatePage />} />
             </Route>
           </Routes>
         </BrowserRouter>

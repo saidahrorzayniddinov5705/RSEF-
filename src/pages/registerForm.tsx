@@ -91,11 +91,9 @@ export function RegisterFormPage() {
        <div className="max-w-[760px] mx-auto bg-white rounded-xl shadow-sm border border-slate-200 p-8 md:p-12">
           
           <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center gap-1.5 flex-col">
-               <div className="flex items-center text-slate-800 text-3xl font-black tracking-tighter">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center text-teal-600 font-bold text-xl">
                   RSEF
                </div>
-            </div>
             <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Create Your RSEF Account</h1>
           </div>
 

@@ -64,7 +64,6 @@ export function Navbar() {
       news: 'News',
       results: 'Results',
       sponsors: 'Sponsors',
-      donate: 'Donate',
       myApp: 'My Application',
       profile: 'Profile',
       admin: 'Admin',
@@ -77,7 +76,6 @@ export function Navbar() {
       news: 'Yangiliklar',
       results: 'Natijalar',
       sponsors: 'Homiylar',
-      donate: 'Xayriya',
       myApp: 'Mening arizam',
       profile: 'Profil',
       admin: 'Admin',
@@ -90,7 +88,6 @@ export function Navbar() {
       news: 'Новости',
       results: 'Результаты',
       sponsors: 'Спонсоры',
-      donate: 'Пожертв.',
       myApp: 'Моя заявка',
       profile: 'Профиль',
       admin: 'Админ',
@@ -235,14 +232,6 @@ export function Navbar() {
              )}
           </div>
 
-          {/* Donate Desktop Button */}
-          <Link 
-             to={`/${locale}/donate`} 
-             className="hidden lg:flex items-center gap-2 bg-amber-400 text-slate-900 font-bold px-4 py-1.5 rounded-full hover:bg-amber-500 transition-colors shadow-sm text-sm uppercase"
-          >
-             {t.donate}
-          </Link>
-
           {/* Language Selector */}
           <div className="relative" ref={langMenuRef}>
              <button 
@@ -346,15 +335,6 @@ export function Navbar() {
                         </Link>
                      );
                   })}
-                  
-                  {/* Donate Button (Yellow highlight) */}
-                  <Link 
-                     to={`/${locale}/donate`}
-                     onClick={() => setMobileMenuOpen(false)}
-                     className="flex items-center justify-between w-full p-5 bg-amber-400 text-slate-900 transition-colors uppercase font-black text-sm tracking-wide border-b border-amber-500"
-                  >
-                     <span>{t.donate}</span>
-                  </Link>
 
                   <form onSubmit={handleSearch} className="p-5 border-b border-white/10 flex items-center group focus-within:bg-white/5 transition-colors">
                      <span>SEARCH</span>
