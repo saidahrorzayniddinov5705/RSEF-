@@ -183,7 +183,7 @@ export function ApplyPage() {
            finalFileName = file.name;
          } catch(uploadErr: any) {
            console.error("Upload error:", uploadErr);
-           alert("Faylni yuklashda xatolik yuz berdi. Iltimos, Firebase Console'da 'Storage' yoqilganligini tekshiring.");
+           alert("Faylni yuklashda xatolik yuz berdi: " + uploadErr.message);
            setUploadingFile(false);
            setLoadingData(false);
            return;

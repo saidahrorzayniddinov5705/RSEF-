@@ -1,10 +1,10 @@
 {
-  "projectId": "gen-lang-client-0296510854",
-  "appId": "1:754215474414:web:f8175743dcfff805b30fff",
-  "apiKey": "AIzaSyAAF5Akzvcn1nGxyazmW7fWsFlsFYz6Lag",
-  "authDomain": "gen-lang-client-0296510854.firebaseapp.com",
+  "projectId": "rsef-platform",
+  "appId": "1:719874910217:web:b7bbbe8e6b1ebd523930d8",
+  "apiKey": "AIzaSyAAMYQaowXGF_dLUl9Gy6KVS2AxSWAiG2Y",
+  "authDomain": "rsef-platform.firebaseapp.com",
   "firestoreDatabaseId": "ai-studio-da32e6c9-4f4d-4cec-93e8-83fd2db85448",
-  "storageBucket": "gen-lang-client-0296510854.firebasestorage.app",
-  "messagingSenderId": "754215474414",
+  "storageBucket": "rsef-platform.firebasestorage.app",
+  "messagingSenderId": "719874910217",
   "measurementId": ""
 }
