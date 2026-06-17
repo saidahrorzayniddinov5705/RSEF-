@@ -50,7 +50,8 @@ export function HomePage() {
       viewAll: "View All",
       noNews: "No news published yet.",
       supportersTitle: "Supported by",
-      supportersText: "We gratefully acknowledge the support of Freshman Academy in making this fair possible."
+      supportersText: "We gratefully acknowledge the support of Freshman Academy in making this fair possible.",
+      supportersText2: "We sincerely appreciate Registon School’s support in bringing RSEF to life."
     },
     uz: {
       title: "Research, Science & Engineering Fair",
@@ -75,7 +76,8 @@ export function HomePage() {
       viewAll: "Barchasini ko'rish",
       noNews: "Hozircha yangiliklar yo'q.",
       supportersTitle: "Qo'llab-quvvatlovchi",
-      supportersText: "Ushbu yarmarkani tashkil etishda Freshman Academy ko'rsatgan yordami uchun minnatdorchilik bildiramiz."
+      supportersText: "Ushbu yarmarkani tashkil etishda Freshman Academy ko'rsatgan yordami uchun minnatdorchilik bildiramiz.",
+      supportersText2: "RSEF ni amalga oshirishda Registon School ko'rsatgan yordami uchun chin dildan minnatdormiz."
     },
     ru: {
       title: "Research, Science & Engineering Fair",
@@ -100,7 +102,8 @@ export function HomePage() {
       viewAll: "Смотреть все",
       noNews: "Пока нет новостей.",
       supportersTitle: "При поддержке",
-      supportersText: "Мы с благодарностью отмечаем поддержку Freshman Academy в проведении этой выставки."
+      supportersText: "Мы с благодарностью отмечаем поддержку Freshman Academy в проведении этой выставки.",
+      supportersText2: "Мы искренне признательны Registon School за поддержку в воплощении RSEF в жизнь."
     }
   };
   const t = translations[locale as keyof typeof translations] || translations.en;
@@ -243,17 +246,33 @@ export function HomePage() {
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 mb-6 text-center uppercase tracking-tight leading-tight">{t.supportersTitle}</h2>
             <div className="w-24 h-1 bg-[#4FD1FF] rounded-full mx-auto mb-16"></div>
             
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12 md:gap-16">
-               <div className="flex flex-col items-center shrink-0">
-                  <div className="w-48 h-48 mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-4">
-                     <img src="/freshman-logo.png" alt="Freshman Academy Logo" className="w-full h-full object-contain" />
+            <div className="flex flex-col gap-8">
+               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                  <div className="flex flex-col items-center shrink-0">
+                     <div className="w-48 h-48 mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-4">
+                        <img src="/freshman-logo.png" alt="Freshman Academy Logo" className="w-full h-full object-contain" />
+                     </div>
+                     <h3 className="text-2xl font-black text-[#0a192f] uppercase tracking-wide">Freshman Academy</h3>
                   </div>
-                  <h3 className="text-2xl font-black text-[#0a192f] uppercase tracking-wide">Freshman Academy</h3>
+                  <div className="flex-1 text-center md:text-left">
+                     <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-[#0a192f] tracking-tight leading-relaxed">
+                       "{t.supportersText}"
+                     </p>
+                  </div>
                </div>
-               <div className="flex-1 text-center md:text-left">
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-[#0a192f] tracking-tight leading-relaxed">
-                    "{t.supportersText}"
-                  </p>
+
+               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16">
+                  <div className="flex flex-col items-center shrink-0">
+                     <div className="w-48 h-48 mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-4">
+                        <img src="/registon-logo.png" alt="Registon School Logo" className="w-full h-full object-contain mix-blend-multiply" />
+                     </div>
+                     <h3 className="text-2xl font-black text-[#0a192f] uppercase tracking-wide">Registon School</h3>
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                     <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-[#0a192f] tracking-tight leading-relaxed">
+                       "{t.supportersText2}"
+                     </p>
+                  </div>
                </div>
             </div>
          </div>
