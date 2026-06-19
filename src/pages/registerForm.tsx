@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Info, X, Check, Loader2 } from 'lucide-react';
+import { Info, X, Check, Loader2, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../components/AuthProvider';
 
 const countries = [
@@ -36,6 +36,7 @@ export function RegisterFormPage() {
   const { register } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errorInfo, setErrorInfo] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     dob: '',
@@ -149,11 +150,34 @@ export function RegisterFormPage() {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-2">
                  <div>
                     <label className="block text-sm font-medium text-slate-800 mb-2">Password <span className="text-rose-500">*</span></label>
-                    <input type="password" required value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} className="w-full border border-slate-300 rounded p-2.5 text-sm focus:ring-[#10b981] focus:border-[#10b981]" />
+                    <div className="relative">
+                        <input 
+                           type={showPassword ? "text" : "password"} 
+                           required 
+                           value={formData.password} 
+                           onChange={e => setFormData({...formData, password: e.target.value})} 
+                           className="w-full border border-slate-300 rounded p-2.5 pr-10 text-sm focus:ring-[#10b981] focus:border-[#10b981]" 
+                        />
+                        <button
+                           type="button"
+                           onClick={() => setShowPassword(!showPassword)}
+                           className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+                        >
+                           {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                     </div>
                  </div>
                  <div>
                     <label className="block text-sm font-medium text-slate-800 mb-2">Confirm Password <span className="text-rose-500">*</span></label>
-                    <input type="password" required value={formData.confirmPassword} onChange={e => setFormData({...formData, confirmPassword: e.target.value})} className="w-full border border-slate-300 rounded p-2.5 text-sm focus:ring-[#10b981] focus:border-[#10b981]" />
+                    <div className="relative">
+                        <input 
+                           type={showPassword ? "text" : "password"} 
+                           required 
+                           value={formData.confirmPassword} 
+                           onChange={e => setFormData({...formData, confirmPassword: e.target.value})} 
+                           className="w-full border border-slate-300 rounded p-2.5 pr-10 text-sm focus:ring-[#10b981] focus:border-[#10b981]" 
+                        />
+                     </div>
                  </div>
                </div>
                

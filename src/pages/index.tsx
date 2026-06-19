@@ -39,14 +39,14 @@ export function HomePage() {
       countries: "Countries",
       projects: "Projects",
       teams: "Teams/year",
-      dateTitle: "July 8, 2026",
+      dateTitle: "July 15, 2026",
       venueTitle: "Nest One, Tashkent City",
       googleMaps: "Google",
       yandexMaps: "Yandex",
       appleMaps: "Apple",
-      dateDesc: "Join us for an immersive competition where top high school and university students showcase their research.",
+      dateDesc: "Join us for an immersive competition where top middle school, high school, and gap year students showcase their research.",
       awardTitle: "Prizes & Scholarships",
-      awardDesc: "Winners will be awarded the Grand Prize, exclusive internships, and university scholarships across global institutions.",
+      awardDesc: "Finalists will receive exclusive awards and prizes, generously provided by Registan School, while winners will additionally receive cash prizes.",
       viewAll: "View All",
       noNews: "No news published yet.",
       supportersTitle: "Supported by",
@@ -65,14 +65,14 @@ export function HomePage() {
       countries: "Davlatlar",
       projects: "Loyihalar",
       teams: "Jamoalar/yil",
-      dateTitle: "8-Iyul, 2026",
+      dateTitle: "15-Iyul, 2026",
       venueTitle: "Nest One, Toshkent",
       googleMaps: "Google",
       yandexMaps: "Yandex",
       appleMaps: "Apple",
-      dateDesc: "Bizga qo'shiling va qiziqarli musobaqada eng iqtidorli maktab va universitet talabalari o'z tadqiqotlarini namoyish etishini kuzating.",
+      dateDesc: "Eng yaxshi o'rta maktab, litsey va gap year o'quvchilari o'z tadqiqotlarini namoyish etadigan immersiv tanlovda bizga qo'shiling.",
       awardTitle: "Sovrinlar va Grantlar",
-      awardDesc: "G'oliblarga Bosh sovrin, eksklyuziv amaliyotlar va dunyo bo'ylab oliygohlarning grantlari taqdim etiladi.",
+      awardDesc: "Finalchilar Registon School tomonidan taqdim etilgan eksklyuziv mukofotlar va sovg'alarni qo'lga kiritadilar, g'oliblarga esa qo'shimcha ravishda pul mukofotlari beriladi.",
       viewAll: "Barchasini ko'rish",
       noNews: "Hozircha yangiliklar yo'q.",
       supportersTitle: "Qo'llab-quvvatlovchi",
@@ -91,14 +91,14 @@ export function HomePage() {
       countries: "Страны",
       projects: "Проекты",
       teams: "Команд/год",
-      dateTitle: "8 Июля, 2026",
+      dateTitle: "15 Июля, 2026",
       venueTitle: "Nest One, Ташкент",
       googleMaps: "Google",
       yandexMaps: "Yandex",
       appleMaps: "Apple",
-      dateDesc: "Присоединяйтесь к нам на соревновании, где лучшие школьники и студенты вузов представляют свои исследования.",
+      dateDesc: "Присоединяйтесь к нам на захватывающем конкурсе, где лучшие ученики средних и старших классов, а также студенты, взявшие академический отпуск, представят свои исследования.",
       awardTitle: "Призы и Стипендии",
-      awardDesc: "Победители получат Главный приз, эксклюзивные стажировки и стипендии университетов по всему миру.",
+      awardDesc: "Финалисты получат эксклюзивные награды и призы, любезно предоставленные Registon School, а победители дополнительно получат денежные призы.",
       viewAll: "Смотреть все",
       noNews: "Пока нет новостей.",
       supportersTitle: "При поддержке",
@@ -186,6 +186,9 @@ export function HomePage() {
                         {t.appleMaps}
                      </a>
                   </div>
+                  <div className="mt-2 text-center">
+                    <span className="text-[20px] font-bold tracking-widest text-slate-900 uppercase">Freshman Academy</span>
+                  </div>
                </div>
 
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
@@ -216,8 +219,19 @@ export function HomePage() {
                   const desc = news.description[locale || 'en'] || news.description['en'];
                   return (
                      <div key={news.id} onClick={() => window.location.href = `/${locale}/news`} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all group cursor-pointer flex flex-col h-full">
-                        <div className="h-56 overflow-hidden bg-slate-100 shrink-0">
-                           <img src={news.imageUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="aspect-video overflow-hidden bg-slate-100 shrink-0">
+                           {news.imageUrl && news.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? (
+                              <iframe 
+                                 className="w-full h-full"
+                                 src={`https://www.youtube.com/embed/${news.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/)[1]}`} 
+                                 title={title}
+                                 frameBorder="0"
+                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                 allowFullScreen
+                              ></iframe>
+                           ) : (
+                              <img src={news.imageUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                           )}
                         </div>
                         <div className="p-6 flex flex-col flex-1">
                            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3 block">

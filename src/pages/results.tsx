@@ -40,26 +40,37 @@ export function ResultsPage() {
         {loading ? (
            <div className="flex justify-center py-20 text-slate-500">{t.load}</div>
         ) : (
-           <div className="space-y-12">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {resultsList.length > 0 ? resultsList.map((res) => {
                  const title = res.title[locale || 'en'] || res.title['en'];
                  const desc = res.description[locale || 'en'] || res.description['en'];
                  return (
-                    <div key={res.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                       <div className="bg-slate-900 p-6 flex items-center justify-between">
-                          <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                             <Trophy className="w-7 h-7 text-yellow-400" />
+                    <div key={res.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                       <div className="bg-slate-900 p-5 md:p-6 flex items-center justify-between">
+                          <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                             <Trophy className="w-6 h-6 text-yellow-400" />
                              {title} (RSEF {res.year})
                           </h2>
                        </div>
-                       <div className="p-8 flex flex-col md:flex-row gap-8">
+                       <div className="p-6 md:p-8 flex flex-col gap-6 flex-1">
                           {res.imageUrl && (
-                              <div className="w-full md:w-1/3">
-                                 <img src={res.imageUrl} alt={title} className="w-full rounded-xl shadow-md border border-slate-200" />
+                              <div className="w-full aspect-video bg-slate-100 rounded-xl overflow-hidden shadow-md border border-slate-200 flex-shrink-0">
+                                 {res.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? (
+                                    <iframe 
+                                       className="w-full h-full"
+                                       src={`https://www.youtube.com/embed/${res.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/)[1]}`} 
+                                       title={title}
+                                       frameBorder="0"
+                                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                       allowFullScreen
+                                    ></iframe>
+                                 ) : (
+                                    <img src={res.imageUrl} alt={title} className="w-full h-full object-cover" />
+                                 )}
                               </div>
                           )}
-                          <div className={`w-full ${res.imageUrl ? 'md:w-2/3' : ''}`}>
-                             <p className="text-slate-700 leading-relaxed whitespace-pre-wrap text-lg">{desc}</p>
+                          <div className="w-full flex-1">
+                             <p className="text-slate-700 leading-relaxed whitespace-pre-wrap text-base">{desc}</p>
                           </div>
                        </div>
                     </div>

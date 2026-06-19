@@ -41,26 +41,37 @@ export function NewsPage() {
         {loading ? (
            <div className="flex justify-center py-20 text-slate-500">{t.load}</div>
         ) : (
-           <div className="space-y-10">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {newsList.length > 0 ? newsList.map((news) => {
                  const title = news.title[locale || 'en'] || news.title['en'];
                  const desc = news.description[locale || 'en'] || news.description['en'];
                  return (
-                    <div key={news.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row group">
-                       <div className="w-full md:w-1/3 h-64 md:h-auto overflow-hidden">
-                          <img 
-                            src={news.imageUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} 
-                            alt={title} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                          />
-                       </div>
-                       <div className="w-full md:w-2/3 p-8 flex flex-col justify-center">
-                          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">
-                             <Calendar className="w-4 h-4" />
+                    <div key={news.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col group">
+                       <div className="w-full aspect-video bg-slate-100 flex-shrink-0">
+                           {news.imageUrl && news.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? (
+                              <iframe 
+                                 className="w-full h-full"
+                                 src={`https://www.youtube.com/embed/${news.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/)[1]}`} 
+                                 title={title}
+                                 frameBorder="0"
+                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                 allowFullScreen
+                              ></iframe>
+                           ) : (
+                              <img 
+                                src={news.imageUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} 
+                                alt={title} 
+                                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" 
+                              />
+                           )}
+                        </div>
+                       <div className="w-full p-6 md:p-8 flex flex-col justify-center flex-1">
+                          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3 block">
+                             <Calendar className="w-4 h-4 inline-block mb-1" />
                              {new Date(news.createdAt).toLocaleDateString()}
                           </span>
-                          <h2 className="text-2xl font-bold text-slate-900 mb-4">{title}</h2>
-                          <p className="text-slate-600 leading-relaxed whitespace-pre-wrap">{desc}</p>
+                          <h2 className="text-2xl font-bold text-slate-900 mb-3">{title}</h2>
+                          <p className="text-slate-600 leading-relaxed whitespace-pre-wrap text-base">{desc}</p>
                        </div>
                     </div>
                  );

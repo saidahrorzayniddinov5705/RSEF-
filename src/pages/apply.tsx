@@ -457,7 +457,7 @@ export function ApplyPage() {
 
                 <div>
                    <label className="block text-[13px] font-bold text-[#0c182c] mb-1.5">
-                     {t.form.uploadPdf || "Upload PDF or presentation"}
+                     {t.form.uploadPdf || "Upload PDF or presentation"} <span className="text-red-500">*</span>
                    </label>
                    {!submissionExists && (
                      <input 
@@ -534,26 +534,6 @@ export function ApplyPage() {
                        </label>
                     </div>
                  </div>
-
-                 <div className="border-t border-[#dfdbd1] pt-8">
-                    <label className="block text-[14px] font-bold text-[#0c182c] mb-4">{t.form.travelSupport} <span className="text-red-500 ml-1">*</span></label>
-                    <div className="grid grid-cols-2 gap-4">
-                       <label className={cn(
-                          "flex items-center justify-center p-4 border rounded-md cursor-pointer transition-colors font-medium",
-                          formData.travelSupport === 'Yes' ? "border-[#0c182c] bg-white text-[#0c182c] shadow-[0_0_0_1px_#0c182c]" : "border-[#dfdbd1] bg-white hover:bg-slate-50 text-[#0c182c]"
-                       )}>
-                          <input type="radio" className="sr-only" name="travelSupport" value="Yes" checked={formData.travelSupport === 'Yes'} onChange={(e) => setFormData({...formData, travelSupport: e.target.value})} disabled={submissionExists} />
-                          {t.form.travelSupportYes || "Yes"}
-                       </label>
-                       <label className={cn(
-                          "flex items-center justify-center p-4 border rounded-md cursor-pointer transition-colors font-medium",
-                          formData.travelSupport === 'No' ? "border-[#0c182c] bg-white text-[#0c182c] shadow-[0_0_0_1px_#0c182c]" : "border-[#dfdbd1] bg-white hover:bg-slate-50 text-[#0c182c]"
-                       )}>
-                          <input type="radio" className="sr-only" name="travelSupport" value="No" checked={formData.travelSupport === 'No'} onChange={(e) => setFormData({...formData, travelSupport: e.target.value})} disabled={submissionExists} />
-                          {t.form.travelSupportNo || "No"}
-                       </label>
-                    </div>
-                 </div>
               </div>
             </div>
           )}
@@ -570,9 +550,9 @@ export function ApplyPage() {
                  {/* PUZZLE 1 */}
                  <div className="bg-white border-2 text-left border-[#dfdbd1] rounded-xl p-8 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]">
                     <div className="text-[11px] font-bold tracking-widest text-[#8a867d] uppercase mb-4">{t.form.problem1Req || "PROBLEM 1 — OPTIONAL"}</div>
-                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.clusterTitle || "The Cluster"}</h3>
-                    <p className="italic text-[#5a6069] mb-4">{t.form.clusterP1 || "A rural school of 200 students suddenly sees 12 cases of severe headaches in one week — all from the same classroom. No one is hospitalized, but the pattern is clear. You're asked to investigate."}</p>
-                    <p className="text-[#5a6069] mb-6">{t.form.clusterP2 || "List the first three things you would look into, and explain your reasoning for each. There is no single right answer — we're interested in how you think."}</p>
+                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.clusterTitle || "The Data Point"}</h3>
+                    <p className="italic text-[#5a6069] mb-4">{t.form.clusterP1 || "Suppose nine of your trials support your hypothesis, but one deviates sharply."}</p>
+                    <p className="text-[#5a6069] mb-6">{t.form.clusterP2 || "Do you exclude that data point or retain it, and how do you justify that decision?"}</p>
                     <div className="border-t border-[#dfdbd1] w-full my-6"></div>
                     <p className="text-sm font-medium text-[#5a6069] mb-4">{t.form.writeFreely || "Write freely. No format required."}</p>
                     <textarea rows={4} disabled={submissionExists} value={formData.blitz1}
@@ -580,16 +560,16 @@ export function ApplyPage() {
                        placeholder={t.form.typeAnswer || "Type your answer here..."}
                        className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
-                       {formData.blitz1.split(/\s+/).filter(w => w.length > 0).length} / 200 words
+                       {formData.blitz1.split(/\s+/).filter(w => w.length > 0).length} / 50 words
                     </div>
                  </div>
 
                  {/* PUZZLE 2 */}
                  <div className="bg-white border-2 text-left border-[#dfdbd1] rounded-xl p-8 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]">
                     <div className="text-[11px] font-bold tracking-widest text-[#8a867d] uppercase mb-4">{t.form.problem2Req || "PROBLEM 2 — OPTIONAL"}</div>
-                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.liquidTitle || "The Unknown Liquid"}</h3>
-                    <p className="italic text-[#5a6069] mb-4">{t.form.liquidP1 || "You're handed 50 ml of a clear, odorless liquid. You cannot taste it. You have access to a standard school lab."}</p>
-                    <p className="text-[#5a6069] mb-6">{t.form.liquidP2 || "Describe how you would determine whether it is pure water. Walk us through your steps and why you chose them."}</p>
+                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.liquidTitle || "The Replication"}</h3>
+                    <p className="italic text-[#5a6069] mb-4">{t.form.liquidP1 || "Imagine another researcher replicates your procedure exactly, yet obtains a different result."}</p>
+                    <p className="text-[#5a6069] mb-6">{t.form.liquidP2 || "Both of you worked honestly—what variables might account for the discrepancy?"}</p>
                     <div className="border-t border-[#dfdbd1] w-full my-6"></div>
                     <p className="text-sm font-medium text-[#5a6069] mb-4">{t.form.writeFreely || "Write freely. No format required."}</p>
                     <textarea rows={4} disabled={submissionExists} value={formData.blitz2}
@@ -597,16 +577,16 @@ export function ApplyPage() {
                        placeholder={t.form.typeAnswer || "Type your answer here..."}
                        className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
-                       {formData.blitz2.split(/\s+/).filter(w => w.length > 0).length} / 200 words
+                       {formData.blitz2.split(/\s+/).filter(w => w.length > 0).length} / 50 words
                     </div>
                  </div>
 
                  {/* PUZZLE 3 */}
                  <div className="bg-white border-2 text-left border-[#dfdbd1] rounded-xl p-8 shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all hover:border-[#cbd0d6]">
                     <div className="text-[11px] font-bold tracking-widest text-[#8a867d] uppercase mb-4">{t.form.problem3Opt || "PROBLEM 3 — OPTIONAL"}</div>
-                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.greenhouseTitle || "The Greenhouse"}</h3>
-                    <p className="italic text-[#5a6069] mb-4">{t.form.greenhouseP1 || "A student notices that their tomato plants grow taller when classical music plays in the greenhouse. After two weeks, they write in their notebook: \"Music helps plant growth.\""}</p>
-                    <p className="text-[#5a6069] mb-6">{t.form.greenhouseP2 || "What — if anything — is wrong with that conclusion? And if you wanted to test it properly, how would you design the study?"}</p>
+                    <h3 className="text-xl font-serif text-[#0c182c] mb-4">{t.form.greenhouseTitle || "The Scale"}</h3>
+                    <p className="italic text-[#5a6069] mb-4">{t.form.greenhouseP1 || "Your findings hold on a small scale."}</p>
+                    <p className="text-[#5a6069] mb-6">{t.form.greenhouseP2 || "If the system were scaled up a thousandfold, would the same relationship hold? Explain why or why not."}</p>
                     <div className="border-t border-[#dfdbd1] w-full my-6"></div>
                     <p className="text-sm font-medium text-[#5a6069] mb-4">{t.form.writeFreely || "Write freely. No format required."}</p>
                     <textarea rows={4} disabled={submissionExists} value={formData.blitz3}
@@ -614,7 +594,7 @@ export function ApplyPage() {
                        placeholder={t.form.typeAnswer || "Type your answer here..."}
                        className="w-full rounded-xl border-2 border-slate-800 bg-white px-4 py-3 focus:outline-none focus:ring-4 focus:ring-slate-800/10 disabled:bg-slate-50 resize-none placeholder:text-slate-400/50 font-serif text-lg text-[#0c182c]" />
                     <div className="text-right text-xs text-slate-400 mt-2">
-                       {formData.blitz3.split(/\s+/).filter(w => w.length > 0).length} / 200 words
+                       {formData.blitz3.split(/\s+/).filter(w => w.length > 0).length} / 50 words
                     </div>
                  </div>
               </div>
@@ -625,7 +605,7 @@ export function ApplyPage() {
           {currentStep === 5 && (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
               <div>
-                <h2 className="text-3xl font-serif text-[#0c182c] mb-2 cursor-text select-text hover:bg-slate-100 transition-colors">{t.form.statementTitleH2 || "Personal statement."}</h2>
+                <h2 className="text-3xl font-serif text-[#0c182c] mb-2 cursor-text select-text hover:bg-slate-100 transition-colors">{t.form.statementTitleH2 || "Personal statement — OPTIONAL"}</h2>
                 <p className="text-[#5a6069] cursor-text select-text hover:bg-slate-100 transition-colors line-clamp-3">{t.form.statementDesc || "This is your chance to say something true. You don't need to answer every question below — they're prompts, not a checklist. Pick whatever feels most honest and write to that. One strong paragraph beats five generic ones."}</p>
               </div>
 
@@ -642,7 +622,7 @@ export function ApplyPage() {
               <div className="bg-white border-2 border-slate-800 rounded-xl p-4 shadow-sm focus-within:ring-4 focus-within:ring-slate-800/10 focus-within:border-slate-800 transition-all hover:border-slate-700">
                  <textarea rows={10} disabled={submissionExists} value={formData.personalStatement}
                     onChange={e => setFormData({...formData, personalStatement: e.target.value})}
-                    placeholder={t.form.statementPlaceholder || "Write in whatever language feels most natural to you. Uzbek or English, both are welcome."}
+                    placeholder={t.form.statementPlaceholder || "Write your answer here..."}
                     className="w-full border-0 bg-transparent px-0 py-0 focus:ring-0 disabled:bg-transparent resize-none font-medium text-[#0c182c] placeholder:text-slate-400/50" />
                  <div className="text-right text-xs text-slate-400 mt-2 border-t border-slate-100 pt-2 flex justify-between items-center">
                     <span className="text-slate-300 italic">{t.form.beHonest || "Be honest. Be yourself."}</span>

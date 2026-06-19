@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../components/AuthProvider';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../lib/firebase';
@@ -14,6 +14,7 @@ export function LoginPage() {
   const [successInfo, setSuccessInfo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isResetMode, setIsResetMode] = useState(false);
 
   const t = {
@@ -93,13 +94,22 @@ export function LoginPage() {
                         {t.forgot}
                      </button>
                   </div>
-                  <input 
-                    type="password" 
-                    required 
-                    value={password} 
-                    onChange={e => setPassword(e.target.value)} 
-                    className="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-[#10b981] focus:border-[#10b981]" 
-                  />
+                  <div className="relative">
+                    <input 
+                      type={showPassword ? "text" : "password"} 
+                      required 
+                      value={password} 
+                      onChange={e => setPassword(e.target.value)} 
+                      className="w-full border border-slate-300 rounded-lg p-3 pr-10 text-sm focus:ring-[#10b981] focus:border-[#10b981]" 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                </div>
              )}
 

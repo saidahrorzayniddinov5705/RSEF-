@@ -623,7 +623,7 @@ export function AdminPage() {
                         {loadingData ? <p className="text-sm text-slate-500">Loading...</p> : null}
                         {news.map(n => (
                            <div key={n.id} className="flex gap-4 p-4 border border-slate-200 rounded-xl hover:border-slate-300 transition-colors">
-                              {n.imageUrl && <img src={n.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />}
+                              {n.imageUrl && (n.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? <div className="w-20 h-20 bg-slate-200 rounded-lg shrink-0 flex items-center justify-center text-[10px] text-slate-500 font-bold p-2 text-center border">YouTube Video</div> : <img src={n.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />)}
                               <div className="flex-1">
                                  <h5 className="font-bold text-sm text-slate-900 mb-1">{n.title.en}</h5>
                                  <p className="text-xs text-slate-500 line-clamp-2 mb-2">{n.description.en}</p>
@@ -692,7 +692,7 @@ export function AdminPage() {
                         {loadingData ? <p className="text-sm text-slate-500">Loading...</p> : null}
                         {resultsList.map(r => (
                            <div key={r.id} className="flex gap-4 p-4 border border-slate-200 rounded-xl hover:border-slate-300 transition-colors">
-                              {r.imageUrl && <img src={r.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />}
+                              {r.imageUrl && (r.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? <div className="w-20 h-20 bg-slate-200 rounded-lg shrink-0 flex items-center justify-center text-[10px] text-slate-500 font-bold p-2 text-center border">YouTube Video</div> : <img src={r.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />)}
                               <div className="flex-1">
                                  <h5 className="font-bold text-sm text-slate-900 mb-1">{r.title.en}</h5>
                                  <p className="text-xs text-slate-500 line-clamp-2 mb-2">{r.description.en}</p>
