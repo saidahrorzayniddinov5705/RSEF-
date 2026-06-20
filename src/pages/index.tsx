@@ -186,8 +186,6 @@ export function HomePage() {
                         {t.appleMaps}
                   </div>
                </div>
-
-               <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                   <Award className="w-10 h-10 text-indigo-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{t.awardDesc}</p>
