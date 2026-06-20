@@ -184,10 +184,6 @@ export function HomePage() {
                      </a>
                      <a href="https://maps.apple.com/?q=Nest+One,Tashkent,Uzbekistan" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
                         {t.appleMaps}
-                     </a>
-                  </div>
-                  <div className="mt-2 text-center">
-                    <span className="text-[20px] font-bold tracking-widest text-slate-900 uppercase">Freshman Academy</span>
                   </div>
                </div>
 
