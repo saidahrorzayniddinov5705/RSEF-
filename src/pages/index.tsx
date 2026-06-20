@@ -184,8 +184,12 @@ export function HomePage() {
                      </a>
                      <a href="https://maps.apple.com/?q=Nest+One,Tashkent,Uzbekistan" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
                         {t.appleMaps}
+                     </a>
                   </div>
+
                </div>
+
+               <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                   <Award className="w-10 h-10 text-indigo-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{t.awardDesc}</p>
