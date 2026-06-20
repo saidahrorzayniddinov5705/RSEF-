@@ -4,7 +4,7 @@ import { updatePassword } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { useParams, Link } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { handleFirestoreError, OperationType } from '../lib/firestoreInfo';
 
 export function ProfilePage() {
@@ -14,6 +14,7 @@ export function ProfilePage() {
   const [loadingData, setLoadingData] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [infoMessage, setInfoMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   
   const [profileData, setProfileData] = useState({
     firstName: '',
