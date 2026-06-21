@@ -459,11 +459,15 @@ export function AdminPage() {
                                 <Users className="w-4 h-4" /> Team Members
                              </h4>
                              <div className="flex flex-wrap gap-2">
-                                {selectedSub.teamMembers.map((tm, idx) => (
+                                {Array.isArray(selectedSub.teamMembers) ? selectedSub.teamMembers.map((tm, idx) => (
                                    <span key={idx} className="bg-slate-100 text-slate-700 px-3 py-1 text-sm rounded-md border border-slate-200">
                                       {tm}
                                    </span>
-                                ))}
+                                )) : (
+                                   <span className="bg-slate-100 text-slate-700 px-3 py-1 text-sm rounded-md border border-slate-200">
+                                      {selectedSub.teamMembers}
+                                   </span>
+                                )}
                              </div>
                           </div>
                        )}
@@ -788,7 +792,7 @@ export function AdminPage() {
 
                <div>
                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Team Members</h3>
-                 <p className="text-slate-700">{selectedSub.teamMembers && selectedSub.teamMembers.length > 0 ? selectedSub.teamMembers : selectedSub.teamMembers || '-'}</p>
+                 <p className="text-slate-700">{Array.isArray(selectedSub.teamMembers) ? selectedSub.teamMembers.join(', ') : selectedSub.teamMembers || '-'}</p>
                </div>
 
                <div>
