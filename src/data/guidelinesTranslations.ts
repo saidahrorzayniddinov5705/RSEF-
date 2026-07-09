@@ -107,8 +107,7 @@ export const guidelinesTranslations = {
       { q: "What happens after I apply?", a: "Our jury reviews all submissions. If selected, you'll receive an official invitation by email with further instructions — including poster submission details." },
       { q: "My school doesn't have a science lab. Can I still participate?", a: "Yes. Many strong projects are built on observation, data collection, or desk research. Equipment is not a requirement." },
       { q: "Can I submit a project I've worked on for school?", a: "Yes, as long as the research was conducted within the last 12 months and has not previously won a national-level competition." },
-      { q: "I'm 13 or 23. Can I still apply?", a: "RSEF is designed for students aged 15–20. If you're younger or older — whether you're still in secondary school, taking a gap year, or in your first or second year of university — reach out to us at rsef.org@gmail.com. We review exceptions on a case-by-case basis." },
-      { q: "I'm from a different region or country and can't afford travel. Can I still come?", a: "Yes. We don't want financial barriers to stand between you and RSEF. For participants traveling from other regions or countries, we offer partial or full travel support depending on your situation. Accommodation costs are not covered, but if travel is the obstacle, reach out to us at rsef.org@gmail.com and we'll do our best to help." }
+      { q: "I'm 13 or 23. Can I still apply?", a: "RSEF is designed for students aged 15–20. If you're younger or older — whether you're still in secondary school, taking a gap year, or in your first or second year of university — reach out to us at rsef.org@gmail.com. We review exceptions on a case-by-case basis." }
     ]
   },
   uz: {
@@ -219,8 +218,7 @@ export const guidelinesTranslations = {
       { q: "Ariza topshirganimdan so'ng nimalar ro'y beradi?", a: "Hakamlarimiz barcha yuborilgan arizalarni tekshirib chiqadi. Jarayondan o'tish baxtiga muyassar bo'lgan o'quvchi ma'lumot bilan ta'minlanadi, hamda uning email pochtasiga taklifnoma yuboriladi." },
       { q: "Maktabimizda laborotoriya yo'q. Baribir ishtirok etsam bo'ladimi?", a: "Ha. Ko'pchilik loyihalar ma'lumot bazalar, observatsiyalar orqali tayyorlanadi. Mukammal texnika shart degan qoida yo'q." },
       { q: "Maktabim uchun qilgan loyiha bilan ariza topshirishi mumkinmi?", a: "Ha. Agar siz so'nggi 12 oy davomida va hali biron Respublikaning tanloviga taqdim qilmagan bo'lsangiz albatta topshirish uchun yo'l ochiq." },
-      { q: "Men 15 yoki 23 yoshdaman, qatnashsam bo'ladimi?", a: "RSEF odatda 16–22 yoshlar orasidagi o'quvchilarga asoslangan. Ammo qiziqishingiz bo'lsa elektron pochtaga xabar yozing." },
-      { q: "Men uzoqroqdaman va u yerga borish uchun harajatni ko'tara olmayman, qatnashsam bo'ladinmi?", a: "Ha. RSEF bunday vazariyta moliya nuqtasi g'ov bo'lishini cheklaydi, va ro'yxatdan o'tganlarga pulning bir qismini yoki to'loqini to'laydi. Xabar yo'llang!" }
+      { q: "Men 15 yoki 23 yoshdaman, qatnashsam bo'ladimi?", a: "RSEF odatda 16–22 yoshlar orasidagi o'quvchilarga asoslangan. Ammo qiziqishingiz bo'lsa elektron pochtaga xabar yozing." }
     ]
   },
   ru: {
@@ -331,8 +329,7 @@ export const guidelinesTranslations = {
       { q: "Что происходит после подачи заявки?", a: "Наше жюри рассматривает все заявки. В случае отбора вы получите официальное приглашение по электронной почте с дальнейшими инструкциями." },
       { q: "В моей школе нет научной лаборатории. Могу ли я участвовать?", a: "Да. Многие сильные проекты строятся на наблюдениях, сборе данных или кабинетных исследованиях." },
       { q: "Могу ли я представить проект, над которым я работал для школы?", a: "Да, если исследование было проведено в течение последних 12 месяцев и ранее не выигрывало на национальных конкурсах." },
-      { q: "Мне 15 или 23 года. Могу ли я подать заявку?", a: "RSEF рассчитан на учащихся в возрасте 16–22 лет. Напишите нам, рассмотрим вашу ситуацию." },
-      { q: "Я из другого региона и не могу оплатить проезд. Могу ли я приехать?", a: "Да. Мы не хотим финансовые барьеры. Для участников из других регионов мы предлагаем поддержку по проезду. Пишите нам!" }
+      { q: "Мне 15 или 23 года. Могу ли я подать заявку?", a: "RSEF рассчитан на учащихся в возрасте 16–22 лет. Напишите нам, рассмотрим вашу ситуацию." }
     ]
   }
 };
