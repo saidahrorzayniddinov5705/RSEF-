@@ -116,11 +116,10 @@ export function Navbar() {
   }
 
   const languages = [
-    { code: 'uz', label: 'UZ', flagUrl: 'https://flagcdn.com/w40/uz.png', fullLabel: 'Uzbek' },
     { code: 'ru', label: 'RU', flagUrl: 'https://flagcdn.com/w40/ru.png', fullLabel: 'Russian' },
     { code: 'en', label: 'EN', flagUrl: 'https://flagcdn.com/w40/gb.png', fullLabel: 'English' }
   ];
-  const activeLang = languages.find(l => l.code === locale) || languages[2];
+  const activeLang = languages.find(l => l.code === locale) || languages[1];
 
   return (
     <>

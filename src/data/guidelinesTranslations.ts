@@ -26,7 +26,7 @@ export const guidelinesTranslations = {
     },
     guidelines: {
       abstractTitle: "Project Abstract",
-      abstractDesc: "The abstract is the core of your application. We want to understand what you're researching, why it matters, and how you're approaching it (max 300 words in EN/UZ).",
+      abstractDesc: "The abstract is the core of your application. We want to understand what you're researching, why it matters, and how you're approaching it (max 300 words in EN).",
       abstractChecks: [
         "What problem are you investigating?",
         "Why does this problem interest you?",
@@ -137,7 +137,7 @@ export const guidelinesTranslations = {
     },
     guidelines: {
       abstractTitle: "Loyiha Annotatsiyasi (Abstract)",
-      abstractDesc: "Annotatsiya arizangizning asosidir. Biz nima ustida tadqiqot olib borayotganingizni, nega bu muhimligini va qanday yondashayotganingizni tushunishni xohlaymiz (EN/UZ tilida maksimal 300 so'z).",
+      abstractDesc: "Annotatsiya arizangizning asosidir. Biz nima ustida tadqiqot olib borayotganingizni, nega bu muhimligini va qanday yondashayotganingizni tushunishni xohlaymiz (EN tilida maksimal 300 so'z).",
       abstractChecks: [
         "Qanday muammoni o'rganyapsiz?",
         "Nega bu muammo sizni qiziqtiradi?",
@@ -248,7 +248,7 @@ export const guidelinesTranslations = {
     },
     guidelines: {
       abstractTitle: "Аннотация проекта (Abstract)",
-      abstractDesc: "Аннотация — основа вашей заявки. Мы хотим понять, что вы исследуете, почему это важно и как вы к этому подходите (макс. 300 слов на EN/UZ).",
+      abstractDesc: "Аннотация — основа вашей заявки. Мы хотим понять, что вы исследуете, почему это важно и как вы к этому подходите (макс. 300 слов на EN).",
       abstractChecks: [
         "Какую проблему вы исследуете?",
         "Почему эта проблема вас интересует?",

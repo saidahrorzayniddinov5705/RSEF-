@@ -47,6 +47,7 @@ export function HomePage() {
       dateDesc: "Join us for an immersive competition where top middle school, high school, and gap year students showcase their research.",
       awardTitle: "Prizes & Scholarships",
       awardDesc: "Finalists will receive exclusive awards and prizes, generously provided by Registan School, while winners will additionally receive cash prizes.",
+      awardDesc2: "The Top 3 winners of RSEF 2026 will each be awarded a $500 scholarship to the Freshman Research Institute's Research Mentorship Program that is offered at $1,450.",
       viewAll: "View All",
       noNews: "No news published yet.",
       supportersTitle: "Supported by",
@@ -73,6 +74,7 @@ export function HomePage() {
       dateDesc: "Eng yaxshi o'rta maktab, litsey va gap year o'quvchilari o'z tadqiqotlarini namoyish etadigan immersiv tanlovda bizga qo'shiling.",
       awardTitle: "Sovrinlar va Grantlar",
       awardDesc: "Finalchilar Registon School tomonidan taqdim etilgan eksklyuziv mukofotlar va sovg'alarni qo'lga kiritadilar, g'oliblarga esa qo'shimcha ravishda pul mukofotlari beriladi.",
+      awardDesc2: "RSEF 2026 tanlovining kuchli 3 ta g'olibiga 1,450 dollar qiymatidagi Freshman Research Institute'ning Research Mentorship Program dasturiga 500 dollar miqdoridagi grant taqdim etiladi.",
       viewAll: "Barchasini ko'rish",
       noNews: "Hozircha yangiliklar yo'q.",
       supportersTitle: "Qo'llab-quvvatlovchi",
@@ -99,6 +101,7 @@ export function HomePage() {
       dateDesc: "Присоединяйтесь к нам на захватывающем конкурсе, где лучшие ученики средних и старших классов, а также студенты, взявшие академический отпуск, представят свои исследования.",
       awardTitle: "Призы и Стипендии",
       awardDesc: "Финалисты получат эксклюзивные награды и призы, любезно предоставленные Registon School, а победители дополнительно получат денежные призы.",
+      awardDesc2: "Топ-3 победителя RSEF 2026 получат стипендию в размере 500 долларов США на программу Research Mentorship Program от Freshman Research Institute, стоимость которой составляет 1450 долларов США.",
       viewAll: "Смотреть все",
       noNews: "Пока нет новостей.",
       supportersTitle: "При поддержке",
@@ -175,14 +178,14 @@ export function HomePage() {
                     <MapPin className="w-10 h-10 text-red-500 mb-6" />
                     <h3 className="text-xl font-bold text-slate-900 mb-3">{t.venueTitle}</h3>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                     <a href="https://www.google.com/maps/search/?api=1&query=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                  <div className="flex flex-col gap-2 mt-auto">
+                     <a href="https://www.google.com/maps/search/?api=1&query=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center py-2.5 px-4 border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
                         {t.googleMaps}
                      </a>
-                     <a href="https://yandex.com/maps/?text=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                     <a href="https://yandex.com/maps/?text=Nest+One,+Tashkent" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center py-2.5 px-4 border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
                         {t.yandexMaps}
                      </a>
-                     <a href="https://maps.apple.com/?q=Nest+One,Tashkent,Uzbekistan" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[70px] flex items-center justify-center py-2 px-1 border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
+                     <a href="https://maps.apple.com/?q=Nest+One,Tashkent,Uzbekistan" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center py-2.5 px-4 border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-700">
                         {t.appleMaps}
                      </a>
                   </div>
@@ -192,7 +195,8 @@ export function HomePage() {
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                   <Award className="w-10 h-10 text-indigo-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{t.awardDesc}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-3">{t.awardDesc}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed font-medium">{t.awardDesc2}</p>
                </div>
             </div>
 
