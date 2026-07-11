@@ -196,7 +196,7 @@ export function HomePage() {
                   <Award className="w-10 h-10 text-indigo-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed mb-3">{t.awardDesc}</p>
-                  <p className="text-slate-600 text-sm leading-relaxed font-medium">{t.awardDesc2}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed">{t.awardDesc2}</p>
                </div>
             </div>
 
