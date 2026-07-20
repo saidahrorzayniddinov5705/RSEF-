@@ -43,8 +43,8 @@ export function NewsPage() {
         ) : (
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {newsList.length > 0 ? newsList.map((news) => {
-                 const title = news.title[locale || 'en'] || news.title['en'];
-                 const desc = news.description[locale || 'en'] || news.description['en'];
+                 const title = (news.title && typeof news.title === 'object') ? (news.title[locale || 'en'] || news.title['en']) : (typeof news.title === 'string' ? news.title : 'No title');
+                 const desc = (news.description && typeof news.description === 'object') ? (news.description[locale || 'en'] || news.description['en']) : (typeof news.description === 'string' ? news.description : '');
                  return (
                     <div key={news.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col group">
                        <div className="w-full aspect-video bg-slate-100 flex-shrink-0">

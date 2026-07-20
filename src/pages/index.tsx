@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { collection, getDocs, limit, query, orderBy } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import { motion } from 'motion/react';
 import { ArrowRight, Calendar, MapPin, Award } from 'lucide-react';
 
 export function HomePage() {
@@ -163,6 +164,66 @@ export function HomePage() {
          </div>
       </div>
 
+      {/* Stats Section */}
+      <div className="relative z-10 w-full bg-white border-t border-slate-200 py-24">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32 mb-16">
+               <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+               >
+                  <p className="text-7xl md:text-8xl font-black text-slate-900 mb-4 tracking-tighter">38%</p>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-lg">Acceptance Rate</p>
+               </motion.div>
+               <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-center"
+               >
+                  <p className="text-7xl md:text-8xl font-black text-slate-900 mb-4 tracking-tighter">5</p>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-lg">{t.countries}</p>
+               </motion.div>
+            </div>
+            
+            <div className="flex flex-col items-center">
+               <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-8"
+               >
+                  Participating Countries
+               </motion.p>
+               <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                  {[
+                     { name: 'India', flag: 'https://flagcdn.com/in.svg' },
+                     { name: 'Vietnam', flag: 'https://flagcdn.com/vn.svg' },
+                     { name: 'Russia', flag: 'https://flagcdn.com/ru.svg' },
+                     { name: 'Kazakhstan', flag: 'https://flagcdn.com/kz.svg' },
+                     { name: 'Uzbekistan', flag: 'https://flagcdn.com/uz.svg' }
+                  ].map((country, idx) => (
+                     <motion.div 
+                        key={country.name} 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex items-center gap-4 cursor-default"
+                     >
+                        <img src={country.flag} alt={country.name} className="w-10 h-auto rounded-[2px] shadow-sm" />
+                        <span className="text-slate-800 font-bold text-2xl">{country.name}</span>
+                     </motion.div>
+                  ))}
+               </div>
+            </div>
+         </div>
+      </div>
+
       {/* Info Cards - White background, black text */}
       <div className="relative z-10 w-full bg-slate-50 border-t border-slate-200 py-24">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,8 +290,8 @@ export function HomePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                {latestNews.length > 0 ? latestNews.map((news) => {
-                  const title = news.title[locale || 'en'] || news.title['en'];
-                  const desc = news.description[locale || 'en'] || news.description['en'];
+                  const title = (news.title && typeof news.title === 'object') ? (news.title[locale || 'en'] || news.title['en']) : (typeof news.title === 'string' ? news.title : 'No title');
+                  const desc = (news.description && typeof news.description === 'object') ? (news.description[locale || 'en'] || news.description['en']) : (typeof news.description === 'string' ? news.description : '');
                   return (
                      <div key={news.id} onClick={() => window.location.href = `/${locale}/news`} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all group cursor-pointer flex flex-col h-full">
                         <div className="aspect-video overflow-hidden bg-slate-100 shrink-0">

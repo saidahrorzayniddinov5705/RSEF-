@@ -31,7 +31,7 @@ export function SmartSectionInjector({ config }: SmartSectionInjectorProps) {
   const currentLocale = locale || 'en';
 
   // Extract the specific locale data. If the user sent an array (e.g. 3 cards), handle that.
-  const localeData = config.data[currentLocale] || config.data['en'];
+  const localeData = config?.data ? (config.data[currentLocale] || config.data['en']) : null;
   
   if (!localeData) return null;
 

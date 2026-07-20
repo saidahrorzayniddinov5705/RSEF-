@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../components/AuthProvider';
-import { db } from '../lib/firebase';
+import { db, storage } from '../lib/firebase';
 import { collection, getDocs, doc, updateDoc, serverTimestamp, setDoc, deleteDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { handleFirestoreError, OperationType } from '../lib/firestoreInfo';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -47,8 +48,10 @@ interface NewsData {
 interface ResultData {
   id: string;
   year: string;
-  title: { en: string; uz: string; ru: string };
-  description: { en: string; uz: string; ru: string };
+  winnerName: string;
+  projectName: string;
+  placement: string;
+  review: { en: string; uz: string; ru: string };
   imageUrl: string;
 }
 
@@ -78,10 +81,14 @@ export function AdminPage() {
   // Results form
   const [resultsForm, setResultsForm] = useState({
     year: '2025',
-    titleEn: '', titleUz: '', titleRu: '',
-    descEn: '', descUz: '', descRu: '',
+    winnerName: '',
+    projectName: '',
+    placement: '',
+    reviewEn: '', reviewUz: '', reviewRu: '',
     imageUrl: ''
   });
+  const [resultImageFile, setResultImageFile] = useState<File | null>(null);
+  const [isUploadingResult, setIsUploadingResult] = useState(false);
 
   useEffect(() => {
     if (!loading && !isAdmin) {
@@ -228,22 +235,37 @@ export function AdminPage() {
   const handleCreateResult = async (e: React.FormEvent) => {
      e.preventDefault();
      try {
+       setIsUploadingResult(true);
+       let imageUrl = '';
+       
+       if (resultImageFile) {
+         const storageRef = ref(storage, `results/${Date.now()}_${resultImageFile.name}`);
+         const snapshot = await uploadBytes(storageRef, resultImageFile);
+         imageUrl = await getDownloadURL(snapshot.ref);
+       }
+
        const id = Date.now().toString();
        await setDoc(doc(db, 'results', id), {
          year: resultsForm.year,
-         title: { en: resultsForm.titleEn, uz: resultsForm.titleUz, ru: resultsForm.titleRu },
-         description: { en: resultsForm.descEn, uz: resultsForm.descUz, ru: resultsForm.descRu },
-         imageUrl: resultsForm.imageUrl
+         winnerName: resultsForm.winnerName,
+         projectName: resultsForm.projectName,
+         placement: resultsForm.placement,
+         review: { en: resultsForm.reviewEn, uz: resultsForm.reviewUz, ru: resultsForm.reviewRu },
+         imageUrl: imageUrl,
+         createdAt: Date.now()
        });
        setResultsForm({ 
-         year: '2025', 
-         titleEn: '', titleUz: '', titleRu: '', 
-         descEn: '', descUz: '', descRu: '', 
-         imageUrl: '' 
+         year: '2025',
+         winnerName: '', projectName: '', placement: '',
+         reviewEn: '', reviewUz: '', reviewRu: '',
+         imageUrl: ''
        });
+       setResultImageFile(null);
        fetchResults();
      } catch (err) {
        handleFirestoreError(err, OperationType.WRITE, 'results');
+     } finally {
+       setIsUploadingResult(false);
      }
   };
 
@@ -629,8 +651,8 @@ export function AdminPage() {
                            <div key={n.id} className="flex gap-4 p-4 border border-slate-200 rounded-xl hover:border-slate-300 transition-colors">
                               {n.imageUrl && (n.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? <div className="w-20 h-20 bg-slate-200 rounded-lg shrink-0 flex items-center justify-center text-[10px] text-slate-500 font-bold p-2 text-center border">YouTube Video</div> : <img src={n.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />)}
                               <div className="flex-1">
-                                 <h5 className="font-bold text-sm text-slate-900 mb-1">{n.title.en}</h5>
-                                 <p className="text-xs text-slate-500 line-clamp-2 mb-2">{n.description.en}</p>
+                                 <h5 className="font-bold text-sm text-slate-900 mb-1">{typeof n.title === 'string' ? n.title : (n.title?.en || 'No title')}</h5>
+                                 <p className="text-xs text-slate-500 line-clamp-2 mb-2">{typeof n.description === 'string' ? n.description : (n.description?.en || '')}</p>
                                  <div className="flex justify-between items-center">
                                     <span className="text-[10px] text-slate-400 font-medium uppercase">{new Date(n.createdAt).toLocaleDateString()}</span>
                                     <button onClick={() => handleDeleteNews(n.id)} className="text-rose-500 hover:text-rose-700 text-xs font-medium flex items-center gap-1">
@@ -666,26 +688,34 @@ export function AdminPage() {
                         </div>
 
                         <div className="space-y-3">
-                           <label className="text-sm font-bold text-slate-700 block mb-2">Titles</label>
-                           <input required placeholder="English Title" value={resultsForm.titleEn} onChange={e => setResultsForm({...resultsForm, titleEn: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
-                           <input required placeholder="Uzbek Title" value={resultsForm.titleUz} onChange={e => setResultsForm({...resultsForm, titleUz: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
-                           <input required placeholder="Russian Title" value={resultsForm.titleRu} onChange={e => setResultsForm({...resultsForm, titleRu: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
+                           <label className="text-sm font-bold text-slate-700 block mb-2">Winner Name</label>
+                           <input required placeholder="Winner Name" value={resultsForm.winnerName} onChange={e => setResultsForm({...resultsForm, winnerName: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
+                        </div>
+
+                        <div className="space-y-3">
+                           <label className="text-sm font-bold text-slate-700 block mb-2">Project Name</label>
+                           <input required placeholder="Project Name" value={resultsForm.projectName} onChange={e => setResultsForm({...resultsForm, projectName: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
+                        </div>
+
+                        <div className="space-y-3">
+                           <label className="text-sm font-bold text-slate-700 block mb-2">Placement (e.g. 1st Place)</label>
+                           <input required placeholder="Placement" value={resultsForm.placement} onChange={e => setResultsForm({...resultsForm, placement: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
                         </div>
 
                         <div className="space-y-3 pt-2">
-                           <label className="text-sm font-bold text-slate-700">Descriptions</label>
-                           <textarea required placeholder="English Content" value={resultsForm.descEn} onChange={e => setResultsForm({...resultsForm, descEn: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
-                           <textarea required placeholder="Uzbek Content" value={resultsForm.descUz} onChange={e => setResultsForm({...resultsForm, descUz: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
-                           <textarea required placeholder="Russian Content" value={resultsForm.descRu} onChange={e => setResultsForm({...resultsForm, descRu: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
+                           <label className="text-sm font-bold text-slate-700">Review</label>
+                           <textarea required placeholder="English Review" value={resultsForm.reviewEn} onChange={e => setResultsForm({...resultsForm, reviewEn: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
+                           <textarea required placeholder="Uzbek Review" value={resultsForm.reviewUz} onChange={e => setResultsForm({...resultsForm, reviewUz: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
+                           <textarea required placeholder="Russian Review" value={resultsForm.reviewRu} onChange={e => setResultsForm({...resultsForm, reviewRu: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300 h-20" />
                         </div>
 
                         <div className="pt-2">
-                           <label className="text-sm font-bold text-slate-700 block mb-2">Image URL</label>
-                           <input placeholder="https://..." value={resultsForm.imageUrl} onChange={e => setResultsForm({...resultsForm, imageUrl: e.target.value})} className="w-full text-sm p-2 border rounded border-slate-300" />
+                           <label className="text-sm font-bold text-slate-700 block mb-2">Image (Upload)</label>
+                           <input type="file" accept="image/*" onChange={e => setResultImageFile(e.target.files?.[0] || null)} className="w-full text-sm p-2 border rounded border-slate-300" />
                         </div>
 
-                        <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg transition-colors mt-4">
-                           Publish Result
+                        <button type="submit" disabled={isUploadingResult} className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg transition-colors mt-4 disabled:opacity-50">
+                           {isUploadingResult ? "Publishing..." : "Publish Result"}
                         </button>
                      </form>
                   </div>
@@ -698,8 +728,8 @@ export function AdminPage() {
                            <div key={r.id} className="flex gap-4 p-4 border border-slate-200 rounded-xl hover:border-slate-300 transition-colors">
                               {r.imageUrl && (r.imageUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/) ? <div className="w-20 h-20 bg-slate-200 rounded-lg shrink-0 flex items-center justify-center text-[10px] text-slate-500 font-bold p-2 text-center border">YouTube Video</div> : <img src={r.imageUrl} alt="" className="w-20 h-20 object-cover rounded-lg bg-slate-100 shrink-0" />)}
                               <div className="flex-1">
-                                 <h5 className="font-bold text-sm text-slate-900 mb-1">{r.title.en}</h5>
-                                 <p className="text-xs text-slate-500 line-clamp-2 mb-2">{r.description.en}</p>
+                                 <h5 className="font-bold text-sm text-slate-900 mb-1">{typeof r.title === 'string' ? r.title : (r.title?.en || 'No title')}</h5>
+                                 <p className="text-xs text-slate-500 line-clamp-2 mb-2">{typeof r.description === 'string' ? r.description : (r.description?.en || '')}</p>
                                  <div className="flex justify-between items-center">
                                     <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold uppercase">Year: {r.year}</span>
                                     <button onClick={() => handleDeleteResult(r.id)} className="text-rose-500 hover:text-rose-700 text-xs font-medium flex items-center gap-1">
