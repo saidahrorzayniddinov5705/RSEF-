@@ -59,7 +59,7 @@ export function ContactPage() {
           <div className="bg-[#0A1931] p-8 md:p-12 text-white md:w-2/5 flex flex-col justify-between relative overflow-hidden">
              
              {/* Decorative blob */}
-             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl" />
+             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-brand-500/20 rounded-full blur-3xl" />
              <div className="absolute top-12 left-12 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl z-0" />
              
              <div className="relative z-10">
@@ -68,7 +68,7 @@ export function ContactPage() {
                 <div className="space-y-6">
                    <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                         <Phone className="w-5 h-5 text-emerald-400" />
+                         <Phone className="w-5 h-5 text-brand-400" />
                       </div>
                       <div>
                          <p className="font-bold text-sm text-slate-300 mb-1">Phone Number</p>
@@ -78,7 +78,7 @@ export function ContactPage() {
                    
                    <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                         <Mail className="w-5 h-5 text-emerald-400" />
+                         <Mail className="w-5 h-5 text-brand-400" />
                       </div>
                       <div>
                          <p className="font-bold text-sm text-slate-300 mb-1">Email Address</p>
@@ -97,8 +97,8 @@ export function ContactPage() {
           <div className="p-8 md:p-12 md:w-3/5">
              {sent ? (
                 <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in py-12">
-                   <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
-                      <Send className="w-8 h-8 text-emerald-600 ml-1" />
+                   <div className="w-16 h-16 bg-mist-100 rounded-full flex items-center justify-center mb-6">
+                      <Send className="w-8 h-8 text-brand-600 ml-1" />
                    </div>
                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent</h3>
                    <p className="text-slate-600">{t.success}</p>
@@ -110,7 +110,7 @@ export function ContactPage() {
                       <input 
                          required
                          type="text" 
-                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-colors"
+                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-colors"
                          placeholder="John Doe"
                       />
                    </div>
@@ -119,7 +119,7 @@ export function ContactPage() {
                       <input 
                          required
                          type="email" 
-                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-colors"
+                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-colors"
                          placeholder="john@example.com"
                       />
                    </div>
@@ -128,13 +128,13 @@ export function ContactPage() {
                       <textarea 
                          required
                          rows={5}
-                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-colors resize-none"
+                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-colors resize-none"
                          placeholder="How can we help you?"
                       />
                    </div>
                    <button 
                       type="submit"
-                      className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2"
+                      className="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2"
                    >
                       <Send className="w-5 h-5" /> {t.btn}
                    </button>

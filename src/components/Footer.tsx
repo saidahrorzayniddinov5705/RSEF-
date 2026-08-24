@@ -1,8 +1,23 @@
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Instagram, Linkedin, Send } from 'lucide-react';
+
+type Social = {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+  soon?: boolean;
+};
+
+const socials: Social[] = [
+  { name: 'Instagram', href: 'https://www.instagram.com/rsefuz/', icon: Instagram },
+  { name: 'Telegram', href: 'https://t.me/rsefofficial', icon: Send },
+  { name: 'LinkedIn', href: '#', icon: Linkedin, soon: true },
+];
 
 export function Footer() {
   const { locale } = useParams();
-  
+
   const translations = {
     en: {
       cols: [
@@ -26,7 +41,10 @@ export function Footer() {
         ] }
       ],
       cr: "Copyright © " + new Date().getFullYear() + " RSEF Foundation, Inc. All rights reserved.",
-      contact: "Contact us"
+      contact: "Contact us",
+      follow: "Follow us",
+      soon: "Opening soon",
+      tagline: "Empowering young researchers. Building a better future."
     },
     uz: {
       cols: [
@@ -50,7 +68,10 @@ export function Footer() {
         ] }
       ],
       cr: "Mualliflik huquqi © " + new Date().getFullYear() + " RSEF Foundation, Inc. Barcha huquqlar himoyalangan.",
-      contact: "Biz bilan aloqa"
+      contact: "Biz bilan aloqa",
+      follow: "Bizni kuzating",
+      soon: "Tez orada",
+      tagline: "Yosh tadqiqotchilarni qo‘llab-quvvatlaymiz. Yaxshiroq kelajak quramiz."
     },
     ru: {
       cols: [
@@ -74,7 +95,10 @@ export function Footer() {
         ] }
       ],
       cr: "Авторское право © " + new Date().getFullYear() + " RSEF Foundation, Inc. Все права защищены.",
-      contact: "Связаться с нами"
+      contact: "Связаться с нами",
+      follow: "Мы в соцсетях",
+      soon: "Скоро",
+      tagline: "Поддерживаем молодых исследователей. Строим лучшее будущее."
     }
   };
 
@@ -82,61 +106,104 @@ export function Footer() {
   const t = translations[currentLang] || translations.en;
 
   return (
-    <footer className="bg-white pt-16 pb-28 lg:pb-8 border-t border-slate-200 w-full mt-auto">
+    <footer className="relative bg-paper-100 border-t border-mist-100 text-slate-700 pt-16 pb-28 lg:pb-8 w-full mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 mb-14">
+          {/* Brand */}
+          <div className="relative">
+            <div className="flex items-center gap-2 text-brand-900">
+              <img
+                src="/logo-navy.svg"
+                alt="RSEF Logo"
+                className="h-16 md:h-20 w-auto object-contain"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.style.display = 'none';
+                  const textFallback = target.parentElement?.querySelector('.text-fallback');
+                  if (textFallback) textFallback.classList.remove('hidden');
+                }}
+              />
+              <div className="flex flex-col justify-center">
+                <span className="text-fallback hidden text-2xl font-black tracking-tighter">RSEF</span>
+                <span className="text-sm md:text-base font-black italic tracking-tighter uppercase leading-tight">Think</span>
+                <span className="text-sm md:text-base font-black italic tracking-tighter uppercase leading-tight">Beyond Limits</span>
+              </div>
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-slate-500 max-w-xs">{t.tagline}</p>
+            <div className="pointer-events-none absolute -right-4 top-0 h-24 w-24 rounded-full bg-brand-400/10 blur-2xl" />
+          </div>
+
+          {/* Link columns */}
           {t.cols.map((col, idx) => (
-             <div key={idx}>
-                <h4 className="font-bold text-sm text-slate-900 mb-4 tracking-wide">{col.title}</h4>
-                <ul className="space-y-3">
-                   {col.links.map((link, lIdx) => (
-                      <li key={lIdx}>
-                         <Link to={`/${currentLang}/${link.path}`} className="text-sm font-medium text-slate-600 hover:text-emerald-600 transition-colors">
-                            {link.name}
-                         </Link>
-                      </li>
-                   ))}
-                </ul>
-             </div>
+            <div key={idx}>
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-brand-900">
+                {col.title}
+              </h3>
+              <nav className="space-y-2.5 text-sm">
+                {col.links.map((link, lIdx) => (
+                  <Link
+                    key={lIdx}
+                    to={`/${currentLang}/${link.path}`}
+                    className="block font-medium text-slate-600 transition-colors hover:text-brand-500"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           ))}
         </div>
-        
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200">
-           <div className="flex items-center gap-2 opacity-100 transition-opacity">
-               <div className="flex items-center gap-2 text-slate-900">
-                  <img src="/logo-navy.svg" alt="RSEF Logo" className="h-16 md:h-20 w-auto object-contain" 
-                    onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                    const textFallback = target.parentElement?.querySelector('.text-fallback');
-                    if (textFallback) textFallback.classList.remove('hidden');
-                  }} />
-                  <div className="flex flex-col justify-center">
-                    <span className="text-fallback hidden text-2xl font-black tracking-tighter">RSEF</span>
-                    <span className="text-sm md:text-base font-black italic tracking-tighter uppercase leading-tight">Think</span>
-                    <span className="text-sm md:text-base font-black italic tracking-tighter uppercase leading-tight">Beyond Limits</span>
-                  </div>
-               </div>
-           </div>
-           
-           <div className="flex items-center gap-6">
-              <div className="flex items-center gap-4 text-slate-400">
-                 {/* Social placeholders */}
-                 <div className="w-5 h-5 bg-slate-200 rounded-sm hover:bg-emerald-100 cursor-pointer transition-colors"></div>
-                 <div className="w-5 h-5 bg-slate-200 rounded-sm hover:bg-emerald-100 cursor-pointer transition-colors"></div>
-                 <div className="w-5 h-5 bg-slate-200 rounded-sm hover:bg-emerald-100 cursor-pointer transition-colors"></div>
-              </div>
-           </div>
+
+        {/* Socials */}
+        <div className="border-t border-mist-100 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-brand-900">
+              {t.follow}
+            </h3>
+            <div className="flex flex-wrap items-center gap-3">
+              {socials.map(({ name, href, icon: Icon, soon }) =>
+                soon ? (
+                  <span
+                    key={name}
+                    title={`${name} — ${t.soon}`}
+                    aria-label={`${name} — ${t.soon}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-mist-100 bg-paper-200 px-4 py-2.5 text-sm font-semibold text-slate-400 cursor-default"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {name}
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-mist-400">
+                      {t.soon}
+                    </span>
+                  </span>
+                ) : (
+                  <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-mist-100 bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 transition-all hover:border-brand-400 hover:text-brand-500 hover:-translate-y-0.5"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {name}
+                  </a>
+                ),
+              )}
+            </div>
+          </div>
+
+          <Link
+            to={`/${currentLang}/contact`}
+            className="self-start md:self-auto inline-flex items-center rounded-xl bg-brand-900 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-500"
+          >
+            {t.contact}
+          </Link>
         </div>
-        
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-           <p className="font-medium">{t.cr}</p>
-           <div className="flex gap-4 font-medium">
-              <Link to={`/${currentLang}/contact`} className="hover:text-emerald-600 transition-colors">{t.contact}</Link>
-           </div>
+
+        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-mist-100 pt-6 text-xs text-slate-500">
+          <p className="font-medium">{t.cr}</p>
+          <p className="font-medium">rsef.uz</p>
         </div>
       </div>
     </footer>
   );
 }
-

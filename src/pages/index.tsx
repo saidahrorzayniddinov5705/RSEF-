@@ -5,6 +5,9 @@ import { collection, getDocs, limit, query, orderBy } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { motion } from 'motion/react';
 import { ArrowRight, Calendar, MapPin, Award } from 'lucide-react';
+import { ImpactBento } from '../components/blocks/ImpactBento';
+import { JudgingCriteria } from '../components/blocks/JudgingCriteria';
+import { featuredArticles, tr } from '../data/rsef2026';
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -113,7 +116,7 @@ export function HomePage() {
   const t = translations[locale as keyof typeof translations] || translations.en;
 
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen">
+    <div className="w-full flex flex-col items-center bg-paper-50 min-h-screen">
       
       {/* Hero Section (Split Layout) */}
       <div 
@@ -136,7 +139,7 @@ export function HomePage() {
          <div className="relative z-20 w-full max-w-none mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-32 md:py-40">
             <div className="w-full md:w-[75%] lg:w-[70%] xl:w-[65%] flex flex-col">
                <div className="inline-flex self-start items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
-                  <span className="w-2 h-2 rounded-full bg-[#4FD1FF] animate-pulse shadow-[0_0_8px_#4FD1FF]"></span>
+                  <span className="w-2 h-2 rounded-full bg-[#347aea] animate-pulse shadow-[0_0_8px_#347aea]"></span>
                   <span className="text-slate-200 text-sm font-semibold tracking-wide uppercase">{t.appOpen}</span>
                </div>
                
@@ -146,7 +149,7 @@ export function HomePage() {
                        RSEF 2026
                    </div>
                    <div className="w-[1.5px] h-10 md:h-12 bg-white/20 transform skew-x-12 mx-2"></div>
-                   <h1 className="text-[#4FD1FF] text-sm md:text-base font-bold tracking-[0.2em] uppercase">{t.fair}</h1>
+                   <h1 className="text-[#9eb8d2] text-sm md:text-base font-bold tracking-[0.2em] uppercase">{t.fair}</h1>
                </div>
 
                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 leading-[1.15] max-w-4xl drop-shadow-sm">
@@ -157,79 +160,22 @@ export function HomePage() {
                   {t.desc}
                </p>
 
-               <Link to={`/${locale}/apply`} className="self-start inline-flex items-center gap-3 bg-[#4FD1FF] hover:bg-[#3bc2f5] text-slate-950 font-bold text-lg px-8 py-4 rounded-xl transition-all hover:translate-x-1 hover:-translate-y-1 shadow-[0_0_20px_rgba(79,209,255,0.3)]">
+               <Link to={`/${locale}/apply`} className="self-start inline-flex items-center gap-3 bg-[#cedae7] hover:bg-white text-[#041162] font-bold text-lg px-8 py-4 rounded-xl transition-all hover:translate-x-1 hover:-translate-y-1 shadow-[0_10px_30px_rgba(52,122,234,0.25)]">
                   {t.action} <ArrowRight className="w-5 h-5" />
                </Link>
             </div>
          </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="relative z-10 w-full bg-white border-t border-slate-200 py-24">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32 mb-16">
-               <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-               >
-                  <p className="text-7xl md:text-8xl font-black text-slate-900 mb-4 tracking-tighter">38%</p>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-lg">Acceptance Rate</p>
-               </motion.div>
-               <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-center"
-               >
-                  <p className="text-7xl md:text-8xl font-black text-slate-900 mb-4 tracking-tighter">5</p>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-lg">{t.countries}</p>
-               </motion.div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-               <motion.p 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-8"
-               >
-                  Participating Countries
-               </motion.p>
-               <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                  {[
-                     { name: 'India', flag: 'https://flagcdn.com/in.svg' },
-                     { name: 'Vietnam', flag: 'https://flagcdn.com/vn.svg' },
-                     { name: 'Russia', flag: 'https://flagcdn.com/ru.svg' },
-                     { name: 'Kazakhstan', flag: 'https://flagcdn.com/kz.svg' },
-                     { name: 'Uzbekistan', flag: 'https://flagcdn.com/uz.svg' }
-                  ].map((country, idx) => (
-                     <motion.div 
-                        key={country.name} 
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex items-center gap-4 cursor-default"
-                     >
-                        <img src={country.flag} alt={country.name} className="w-10 h-auto rounded-[2px] shadow-sm" />
-                        <span className="text-slate-800 font-bold text-2xl">{country.name}</span>
-                     </motion.div>
-                  ))}
-               </div>
-            </div>
-         </div>
-      </div>
+      {/* RSEF 2026 by the Numbers */}
+      <ImpactBento locale={locale} />
 
       {/* Info Cards - White background, black text */}
-      <div className="relative z-10 w-full bg-slate-50 border-t border-slate-200 py-24">
+      <div className="relative z-10 w-full bg-paper-200 border-t border-mist-100 py-24">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
-                  <Calendar className="w-10 h-10 text-emerald-500 mb-6" />
+                  <Calendar className="w-10 h-10 text-brand-500 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.dateTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{t.dateDesc}</p>
                </div>
@@ -254,7 +200,7 @@ export function HomePage() {
                </div>
 
                <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
-                  <Award className="w-10 h-10 text-indigo-500 mb-6" />
+                  <Award className="w-10 h-10 text-brand-900 mb-6" />
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{t.awardTitle}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed mb-3">{t.awardDesc}</p>
                   <p className="text-slate-600 text-sm leading-relaxed">{t.awardDesc2}</p>
@@ -275,21 +221,45 @@ export function HomePage() {
          </div>
       </div>
 
+      {/* Judging criteria */}
+      <JudgingCriteria locale={locale} />
+
       {/* Latest News - White background, black text */}
-      <div className="relative z-10 w-full bg-white border-t border-slate-100 py-24">
+      <div className="relative z-10 w-full bg-paper-50 border-t border-mist-100 py-24">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-12">
                <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{t.news}</h2>
-                  <div className="w-20 h-1 bg-emerald-500 rounded-full"></div>
+                  <div className="w-20 h-1 bg-brand-500 rounded-full"></div>
                </div>
-               <Link to={`/${locale}/news`} className="text-emerald-600 font-bold hover:text-emerald-500 flex items-center gap-1 group">
+               <Link to={`/${locale}/news`} className="text-brand-600 font-bold hover:text-brand-500 flex items-center gap-1 group">
                   {t.viewAll} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                </Link>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-               {latestNews.length > 0 ? latestNews.map((news) => {
+               {featuredArticles.map((article) => (
+                  <Link
+                     key={article.id}
+                     to={`/${locale}/news/${article.slug}`}
+                     className="bg-white rounded-xl overflow-hidden shadow-sm border border-mist-100 hover:shadow-md hover:border-mist-300 transition-all group cursor-pointer flex flex-col h-full"
+                  >
+                     <div className="aspect-video overflow-hidden bg-paper-200 shrink-0">
+                        <img src={article.coverImage} alt={tr(article.title, locale)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                     </div>
+                     <div className="p-6 flex flex-col flex-1">
+                        <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-3 block">
+                           {new Date(article.date).toLocaleDateString()}
+                        </span>
+                        <h3 className="text-xl font-bold text-brand-900 mb-3 line-clamp-2">{tr(article.title, locale)}</h3>
+                        <p className="text-slate-600 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">{tr(article.excerpt, locale)}</p>
+                        <div className="text-brand-600 font-semibold text-sm flex items-center gap-1 group-hover:text-brand-500 transition-colors">
+                           Read More <ArrowRight className="w-4 h-4" />
+                        </div>
+                     </div>
+                  </Link>
+               ))}
+               {latestNews.length > 0 ? latestNews.slice(0, Math.max(0, 3 - featuredArticles.length)).map((news) => {
                   const title = (news.title && typeof news.title === 'object') ? (news.title[locale || 'en'] || news.title['en']) : (typeof news.title === 'string' ? news.title : 'No title');
                   const desc = (news.description && typeof news.description === 'object') ? (news.description[locale || 'en'] || news.description['en']) : (typeof news.description === 'string' ? news.description : '');
                   return (
@@ -309,31 +279,31 @@ export function HomePage() {
                            )}
                         </div>
                         <div className="p-6 flex flex-col flex-1">
-                           <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3 block">
+                           <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-3 block">
                               {new Date(news.createdAt).toLocaleDateString()}
                            </span>
                            <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2">{title}</h3>
                            <p className="text-slate-600 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">{desc}</p>
-                           <div className="text-emerald-600 font-semibold text-sm flex items-center gap-1 group-hover:text-emerald-500 transition-colors">
+                           <div className="text-brand-600 font-semibold text-sm flex items-center gap-1 group-hover:text-brand-500 transition-colors">
                              Read More <ArrowRight className="w-4 h-4" />
                            </div>
                         </div>
                      </div>
                   );
-               }) : (
-                  <div className="col-span-1 md:col-span-3 text-center py-16 text-slate-500 bg-slate-50 rounded-xl border border-slate-100">
+               }) : (featuredArticles.length === 0 && (
+                  <div className="col-span-1 md:col-span-3 text-center py-16 text-slate-500 bg-paper-200 rounded-xl border border-mist-100">
                      {t.noNews}
                   </div>
-               )}
+               ))}
             </div>
          </div>
       </div>
 
       {/* Supported By */}
-      <div className="relative z-10 w-full bg-slate-50 border-t border-slate-200 py-32">
+      <div className="relative z-10 w-full bg-paper-200 border-t border-mist-100 py-32">
          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 mb-6 text-center uppercase tracking-tight leading-tight">{t.supportersTitle}</h2>
-            <div className="w-24 h-1 bg-[#4FD1FF] rounded-full mx-auto mb-16"></div>
+            <div className="w-24 h-1 bg-brand-500 rounded-full mx-auto mb-16"></div>
             
             <div className="flex flex-col gap-8">
                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12 md:gap-16">
@@ -395,7 +365,7 @@ export function AboutPage() {
     <div className="w-full bg-slate-50 min-h-[70vh] py-24 flex flex-col items-center">
       <div className="max-w-4xl mx-auto px-6 sm:px-12 bg-white rounded-2xl shadow-sm border border-slate-200 py-16 mt-8">
         <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-slate-900 mb-8 tracking-tight text-center">{t.title}</h2>
-        <div className="w-20 h-1.5 bg-[#4FD1FF] rounded-full mx-auto mb-12"></div>
+        <div className="w-20 h-1.5 bg-brand-500 rounded-full mx-auto mb-12"></div>
         <div className="text-[#5a6069] text-lg sm:text-x leading-relaxed space-y-6 text-center sm:text-left">
            <p>{t.content}</p>
         </div>

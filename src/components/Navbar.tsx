@@ -178,8 +178,8 @@ export function Navbar() {
                    className={cn(
                      "text-base font-bold transition-colors uppercase tracking-wide",
                      scrolled || location.pathname !== `/${locale}` 
-                       ? (active ? "text-emerald-600" : "text-slate-600 hover:text-slate-900")
-                       : (active ? "text-[#4FD1FF]" : "text-slate-200 hover:text-white")
+                       ? (active ? "text-brand-600" : "text-slate-600 hover:text-slate-900")
+                       : (active ? "text-[#347aea]" : "text-slate-200 hover:text-white")
                    )}
                  >
                    {link.name}
@@ -253,7 +253,7 @@ export function Navbar() {
                         onClick={() => handleLanguageChange(lang.code)}
                         className={cn(
                            "flex items-center justify-between px-4 py-2.5 text-sm font-bold transition-colors w-full text-left",
-                           lang.code === locale ? "bg-slate-50 text-emerald-600" : "text-slate-700 hover:bg-slate-50"
+                           lang.code === locale ? "bg-slate-50 text-brand-600" : "text-slate-700 hover:bg-slate-50"
                         )}
                       >
                          <div className="flex items-center gap-3">
@@ -287,7 +287,7 @@ export function Navbar() {
                      "flex items-center gap-2 text-sm font-bold transition-all px-5 py-2 rounded-lg shadow-sm hover:-translate-y-0.5",
                      scrolled || location.pathname !== `/${locale}`
                        ? "bg-slate-900 text-white hover:bg-slate-800"
-                       : "bg-emerald-500 text-white hover:bg-emerald-400 shadow-emerald-500/20"
+                       : "bg-brand-500 text-white hover:bg-brand-400 shadow-brand-500/20"
                   )}
                >
                  <LogIn className="w-4 h-4 transform rotate-180" />
@@ -327,7 +327,7 @@ export function Navbar() {
                            onClick={() => setMobileMenuOpen(false)}
                            className={cn(
                               "flex items-center justify-between w-full p-5 border-b border-white/10 transition-colors uppercase font-bold text-sm tracking-wide",
-                              active ? "bg-white/10 text-emerald-400" : "hover:bg-white/5",
+                              active ? "bg-white/10 text-brand-400" : "hover:bg-white/5",
                            )}
                         >
                            <span>{link.name}</span>
@@ -367,7 +367,7 @@ export function Navbar() {
                            {t.signOut}
                         </button>
                      ) : (
-                        <Link to={`/${locale}/login`} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 font-bold text-emerald-400 hover:text-emerald-300 transition-colors py-2 uppercase text-sm">
+                        <Link to={`/${locale}/login`} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 font-bold text-brand-400 hover:text-mist-300 transition-colors py-2 uppercase text-sm">
                            <LogIn className="w-5 h-5" />
                            {t.signIn}
                         </Link>

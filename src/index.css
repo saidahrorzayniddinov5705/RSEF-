@@ -5,6 +5,27 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* ---------------------------------------------------------------
+     RSEF brand ramp — replaces the old electric #4FD1FF / pure blue.
+     brand = primary blues (links, CTAs, deep backgrounds)
+     mist  = muted blue-greys (borders, quiet surfaces, on-navy text)
+     paper = warm off-whites (page + card surfaces instead of #ffffff)
+     --------------------------------------------------------------- */
+  --color-brand-400: #347aea;
+  --color-brand-500: #1c47c6;
+  --color-brand-600: #1e4ba3;
+  --color-brand-900: #041162;
+
+  --color-mist-100: #cedae7;
+  --color-mist-200: #b5cee5;
+  --color-mist-300: #9eb8d2;
+  --color-mist-400: #6d8cbe;
+
+  --color-paper-50: #faf9f7;
+  --color-paper-100: #f6f6f6;
+  --color-paper-200: #f5f4f2;
+  --color-paper-300: #f2f1ef;
 }
 
 @layer utilities {

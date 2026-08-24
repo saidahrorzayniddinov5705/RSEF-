@@ -27,7 +27,7 @@ export function SponsorsPage() {
     <div className="min-h-screen pt-28 pb-20 bg-slate-50 flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-4 w-full">
          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 text-center tracking-tight uppercase">{t.title}</h1>
-         <div className="w-24 h-1.5 bg-[#4FD1FF] mx-auto mb-16 rounded-full"></div>
+         <div className="w-24 h-1.5 bg-[#347aea] mx-auto mb-16 rounded-full"></div>
          
          <div className="flex flex-col gap-8">
             <div className="bg-white p-8 md:p-16 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12 md:gap-16">

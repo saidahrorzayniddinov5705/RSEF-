@@ -13,7 +13,7 @@ import { AdminPage } from './pages/admin';
 import { RegistrationInfoPage } from './pages/registrationInfo';
 import { RegisterFormPage } from './pages/registerForm';
 import { LoginPage } from './pages/login';
-import { NewsPage } from './pages/news';
+import { NewsPage, NewsArticlePage } from './pages/news';
 import { ResultsPage } from './pages/results';
 import { ContactPage } from './pages/contact';
 import SearchPage from './pages/search';
@@ -36,6 +36,7 @@ export default function App() {
               <Route path="about" element={<AboutPage />} />
               <Route path="team" element={<TeamPage />} />
               <Route path="news" element={<NewsPage />} />
+              <Route path="news/:slug" element={<NewsArticlePage />} />
               <Route path="results" element={<ResultsPage />} />
               <Route path="apply" element={<ApplyPage />} />
               <Route path="registration" element={<RegistrationInfoPage />} />
