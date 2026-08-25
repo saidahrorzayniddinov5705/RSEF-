@@ -2,21 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../lib/firebase';
-import { Trophy, Quote } from 'lucide-react';
-import { motion } from 'motion/react';
-import {
-  resultsCopy,
-  tr,
-  winners,
-  type Locale,
-  type Winner,
-} from '../data/rsef2026';
-
-const placeStyles: Record<Winner['place'], { ring: string; badge: string; medal: string }> = {
-  1: { ring: 'border-[#c9a227]/40', badge: 'bg-[#c9a227] text-white', medal: '🥇' },
-  2: { ring: 'border-mist-300', badge: 'bg-mist-400 text-white', medal: '🥈' },
-  3: { ring: 'border-[#b07a3c]/40', badge: 'bg-[#b07a3c] text-white', medal: '🥉' },
-};
+import { Trophy } from 'lucide-react';
+import { WinnersStack } from '../components/blocks/WinnersStack';
+import { resultsCopy, type Locale } from '../data/rsef2026';
 
 export function ResultsPage() {
   const { locale } = useParams();
@@ -50,79 +38,14 @@ export function ResultsPage() {
 
   return (
      <div className="bg-paper-50 min-h-[calc(100vh-200px)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         <h1 className="text-4xl font-heading font-bold text-brand-900 mb-2">{t.title}</h1>
-        <div className="w-20 h-1.5 bg-brand-500 rounded-full mb-12"></div>
+        <div className="w-20 h-1.5 bg-brand-500 rounded-full"></div>
+      </div>
 
-        {/* ---- RSEF 2026 featured winners --------------------------- */}
-        <section className="mb-20">
-           <h2 className="text-2xl font-heading font-bold text-brand-900 mb-8">{c.featured}</h2>
+      <WinnersStack locale={locale} />
 
-           <div className="flex flex-col gap-8">
-              {winners.map((w, idx) => {
-                 const style = placeStyles[w.place];
-                 return (
-                    <motion.article
-                       key={w.id}
-                       initial={{ opacity: 0, y: 20 }}
-                       whileInView={{ opacity: 1, y: 0 }}
-                       viewport={{ once: true, margin: '-60px' }}
-                       transition={{ delay: idx * 0.06 }}
-                       className={`bg-white rounded-2xl border ${style.ring} shadow-[0_8px_30px_rgb(4,17,98,0.05)] overflow-hidden grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]`}
-                    >
-                       {/* Images */}
-                       <div className={`bg-paper-200 grid gap-1 ${w.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                          {w.images.map((img) => (
-                             <img
-                                key={img.src}
-                                src={img.src}
-                                alt={img.alt}
-                                loading="lazy"
-                                className="w-full h-64 lg:h-full object-cover object-top"
-                             />
-                          ))}
-                       </div>
-
-                       {/* Content */}
-                       <div className="p-6 sm:p-8 flex flex-col gap-5">
-                          <div className="flex flex-wrap items-center gap-3">
-                             <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${style.badge}`}>
-                                <span aria-hidden="true">{style.medal}</span>
-                                {tr(w.placeLabel, locale)}
-                             </span>
-                             <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                                RSEF {w.year}
-                             </span>
-                          </div>
-
-                          <div>
-                             <h3 className="text-2xl font-heading font-bold text-brand-900 leading-snug">
-                                {w.projectName}
-                             </h3>
-                             <p className="mt-2 text-brand-600 font-semibold">{w.winnerName}</p>
-                             {w.school && w.school !== w.winnerName && (
-                                <p className="text-sm text-slate-500">{w.school}</p>
-                             )}
-                          </div>
-
-                          <div className="border-t border-mist-100 pt-5">
-                             <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
-                                {c.studentReview}
-                             </p>
-                             <div className="relative pl-8">
-                                <Quote className="w-5 h-5 text-mist-300 absolute left-0 top-1" />
-                                <p className="text-slate-700 leading-relaxed whitespace-pre-line">
-                                   {w.review}
-                                </p>
-                             </div>
-                          </div>
-                       </div>
-                    </motion.article>
-                 );
-              })}
-           </div>
-        </section>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* ---- Anything published from the admin panel -------------- */}
         {loading ? (
            <div className="flex justify-center py-20 text-slate-500">{t.load}</div>
